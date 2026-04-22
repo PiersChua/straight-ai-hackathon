@@ -14,6 +14,13 @@ enum Role {
   HIRER
 }
 
+enum InterviewStatus {
+  PENDING
+  UNFINISHED
+  ACCEPTED
+  REJECTED
+}
+
 model User {
   id            String    @id @default(uuid())
   email         String    @unique
@@ -27,7 +34,84 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  // Shared profile fields
+  bio String?
+
+  // Candidate-only fields
+  resumeKey   String? // s3 key
+  skills      String[]
+  experiences Experience[]
+
+  // Hirer-only fields
+  companyName String?
+  designation String?
+  postings    Posting[]
+  interviews  Interview[]
+
   @@map("user")
+}
+
+model Experience {
+  id          String    @id @default(uuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  company     String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("experience")
+}
+
+model Posting {
+  id           String      @id @default(uuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  description  String
+  requirements String?
+  questions    String[] // list of questions asked in the interview
+  isActive     Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  interviews   Interview[]
+
+  @@map("posting")
+}
+
+model Interview {
+  id                String          @id @default(uuid())
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  status            InterviewStatus @default(PENDING)
+  fullTranscription String?         @db.Text
+  conversationId    String // conversation ID from elevenlabs
+  score             Score?
+  posting           Posting         @relation(fields: [postingId], references: [id])
+  postingId         String
+  user              User            @relation(fields: [userId], references: [id])
+  userId            String
+
+  @@map("interview")
+}
+
+model Score {
+  id             String    @id @default(uuid())
+  interviewId    String    @unique
+  interview      Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  clarity        Int // 1–10
+  technicalDepth Int // 1–10
+  communication  Int // 1–10
+  problemSolving Int // 1–10
+  overall        Int // 1–10
+  feedback       String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("score")
 }
 
 model Session {

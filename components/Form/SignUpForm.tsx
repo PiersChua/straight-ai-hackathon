@@ -18,14 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Eye,
-  EyeOff,
-  Loader2,
-  X,
-} from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { SignupSchema } from "@/schemas";
@@ -153,16 +146,16 @@ const SignUpForm = () => {
                     }
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-100 px-4">
+                <SelectContent className="bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-100">
                   <SelectItem
                     value="CANDIDATE"
-                    className="text-sm focus:bg-zinc-800 focus:text-zinc-100 rounded-lg cursor-pointer"
+                    className="text-sm focus:bg-zinc-500 focus:text-zinc-100 rounded-lg cursor-pointer"
                   >
                     Candidate
                   </SelectItem>
                   <SelectItem
                     value="HIRER"
-                    className="text-sm focus:bg-zinc-800 focus:text-zinc-100 rounded-lg cursor-pointer"
+                    className="text-sm focus:bg-zinc-500 focus:text-zinc-100 rounded-lg cursor-pointer"
                   >
                     Hirer
                   </SelectItem>

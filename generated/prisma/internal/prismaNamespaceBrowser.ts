@@ -52,6 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Experience: 'Experience',
+  Posting: 'Posting',
+  Interview: 'Interview',
+  Score: 'Score',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification'
@@ -82,10 +86,75 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   emailVerified: 'emailVerified',
-  image: 'image'
+  image: 'image',
+  bio: 'bio',
+  resumeKey: 'resumeKey',
+  skills: 'skills',
+  companyName: 'companyName',
+  designation: 'designation'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const ExperienceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  company: 'company',
+  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExperienceScalarFieldEnum = (typeof ExperienceScalarFieldEnum)[keyof typeof ExperienceScalarFieldEnum]
+
+
+export const PostingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  requirements: 'requirements',
+  questions: 'questions',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PostingScalarFieldEnum = (typeof PostingScalarFieldEnum)[keyof typeof PostingScalarFieldEnum]
+
+
+export const InterviewScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  status: 'status',
+  fullTranscription: 'fullTranscription',
+  conversationId: 'conversationId',
+  postingId: 'postingId',
+  userId: 'userId'
+} as const
+
+export type InterviewScalarFieldEnum = (typeof InterviewScalarFieldEnum)[keyof typeof InterviewScalarFieldEnum]
+
+
+export const ScoreScalarFieldEnum = {
+  id: 'id',
+  interviewId: 'interviewId',
+  clarity: 'clarity',
+  technicalDepth: 'technicalDepth',
+  communication: 'communication',
+  problemSolving: 'problemSolving',
+  overall: 'overall',
+  feedback: 'feedback',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {

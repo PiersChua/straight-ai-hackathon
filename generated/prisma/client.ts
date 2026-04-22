@@ -47,6 +47,26 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model Experience
+ * 
+ */
+export type Experience = Prisma.ExperienceModel
+/**
+ * Model Posting
+ * 
+ */
+export type Posting = Prisma.PostingModel
+/**
+ * Model Interview
+ * 
+ */
+export type Interview = Prisma.InterviewModel
+/**
+ * Model Score
+ * 
+ */
+export type Score = Prisma.ScoreModel
+/**
  * Model Session
  * 
  */
