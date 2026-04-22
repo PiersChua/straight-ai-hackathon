@@ -135,7 +135,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
         fullTranscription: transcriptRef.current,
       }),
     });
-    router.push("/interviews");
+    router.push("/dashboard/candidateinterviews");
   }, [router, stopVolumePolling]);
 
   useEffect(() => {

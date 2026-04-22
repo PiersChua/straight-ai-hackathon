@@ -19,7 +19,6 @@ export type Role = (typeof Role)[keyof typeof Role]
 
 export const InterviewStatus = {
   PENDING: 'PENDING',
-  UNFINISHED: 'UNFINISHED',
   ACCEPTED: 'ACCEPTED',
   REJECTED: 'REJECTED'
 } as const

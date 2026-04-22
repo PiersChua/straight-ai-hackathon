@@ -25,5 +25,22 @@ const LoginSchema = z.object({
     .toLowerCase(),
   password: z.string().min(1, "Password is required"),
 });
+const PostingSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(100, "Title must be under 100 characters"),
+  description: z
+    .string()
+    .trim()
+    .min(10, "Description must be at least 10 characters"),
+  requirements: z.string().trim().optional(),
+  type: z.enum(PostingType, "Type is required"),
+  questions: z
+    .array(z.string().trim().min(1, "Question cannot be empty"))
+    .min(1, "At least one question is required"),
+  isActive: z.boolean(),
+});
 
-export { SignupSchema, LoginSchema };
+export { SignupSchema, LoginSchema, PostingSchema };

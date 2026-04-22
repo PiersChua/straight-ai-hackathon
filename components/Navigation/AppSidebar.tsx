@@ -10,6 +10,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { Role } from "@/generated/prisma/enums";
 
 import {
   LayoutDashboard,
@@ -25,9 +26,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Role = "CANDIDATE" | "HIRER";
-
-export default function AppSidebar({ role = "CANDIDATE" }: { role?: Role }) {
+export default function AppSidebar({ role }: { role: string | undefined }) {
   const router = useRouter();
   const handleSignOut = async () => {
     const res = await fetch("/api/sign-out", { method: "POST" });
@@ -55,7 +54,13 @@ export default function AppSidebar({ role = "CANDIDATE" }: { role?: Role }) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="/dashboard/candidate/postings">
+                <Link
+                  href={
+                    role === "CANDIDATE"
+                      ? "/dashboard/candidate/postings"
+                      : "/dashboard/hirer/postings"
+                  }
+                >
                   <LayoutDashboard className="w-4 h-4" />
                   Postings
                 </Link>
@@ -74,56 +79,26 @@ export default function AppSidebar({ role = "CANDIDATE" }: { role?: Role }) {
                 </SidebarMenuItem>
               </>
             )}
-
-            {role === "HIRER" && (
-              <>
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
-                    <Link href="/create-interview">
-                      <PlusCircle className="w-4 h-4" />
-                      Create Interview
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
-                    <Link href="/candidates">
-                      <Users className="w-4 h-4" />
-                      Candidate Pool
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
-                    <Link href="/evaluations">
-                      <BarChart3 className="w-4 h-4" />
-                      Evaluations
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </>
-            )}
           </SidebarMenu>
         </SidebarGroup>
+        {role == "CANDIDATE" && (
+          <SidebarGroup>
+            <p className="px-2 mt-4 mb-1 text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
+              BETA
+            </p>
 
-        <SidebarGroup>
-          <p className="px-2 mt-4 mb-1 text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
-            BETA
-          </p>
-
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/analytics">
-                  <BarChart3 className="w-4 h-4" />
-                  Post-Analysis
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="/analytics">
+                    <BarChart3 className="w-4 h-4" />
+                    Post-Analysis
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       {/* Footer */}

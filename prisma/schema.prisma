@@ -33,6 +33,7 @@ model User {
   email         String    @unique
   name          String
   password      String?
+  phoneNumber   String?
   role          Role
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -98,9 +99,9 @@ model Interview {
   fullTranscription String?         @db.Text
   conversationId    String? // conversation ID from elevenlabs
   score             Score?
-  posting           Posting         @relation(fields: [postingId], references: [id])
+  posting           Posting         @relation(fields: [postingId], references: [id], onDelete: Cascade)
   postingId         String
-  user              User            @relation(fields: [userId], references: [id])
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            String
 
   @@map("interview")

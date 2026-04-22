@@ -33,7 +33,7 @@ const InterviewsPage = async () => {
         <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-slate-900">
-              Your Interviews
+              My Interviews
             </h1>
             <p className="text-slate-500 mt-2">
               Track your assessment progress and review tailored feedback.

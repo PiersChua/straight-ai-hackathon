@@ -35,7 +35,7 @@ const CATEGORIES: { label: string; value: PostingType | "ALL"; icon: any }[] = [
   { label: "Others", value: "OTHERS", icon: Layers },
 ];
 
-export default function PostingsList({
+export default function CandidatePostingList({
   initialPostings,
 }: {
   initialPostings: ExtendedPosting[];
@@ -143,10 +143,14 @@ export default function PostingsList({
                   <Button
                     asChild
                     variant="outline"
-                    className="w-full bg-white hover:bg-slate-50 border-slate-200 text-slate-900 font-semibold h-10 rounded-lg shadow-sm transition-all text-sm"
+                    className="w-full bg-white hover:bg-slate-50 border-slate-200 text-slate-900 font-semibold h-10 rounded-lg shadow-sm transition-all text-sm group/btn"
                   >
                     <Link href={`/dashboard/candidate/postings/${posting.id}`}>
                       View Details
+                      <ArrowRight
+                        size={14}
+                        className="group-hover/btn:translate-x-1 transition-transform"
+                      />
                     </Link>
                   </Button>
                 </div>

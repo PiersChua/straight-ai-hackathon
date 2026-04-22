@@ -1,4 +1,4 @@
-import PostingsList from "@/components/List/PostingsList";
+import PostingsList from "@/components/List/CandidatePostingList";
 import { prisma } from "@/lib/prisma";
 
 const PostingsPage = async () => {

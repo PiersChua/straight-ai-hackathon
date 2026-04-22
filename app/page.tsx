@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Mic,
@@ -15,7 +14,7 @@ import Header from "@/components/Navigation/Header";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-const LandingPage = async () => {
+const Home = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col items-center">
@@ -270,4 +269,4 @@ const LandingPage = async () => {
   );
 };
 
-export default LandingPage;
+export default Home;
