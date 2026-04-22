@@ -1083,6 +1083,7 @@ export const PostingScalarFieldEnum = {
   title: 'title',
   description: 'description',
   requirements: 'requirements',
+  type: 'type',
   questions: 'questions',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -1243,6 +1244,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'PostingType'
+ */
+export type EnumPostingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostingType'>
+    
+
+
+/**
+ * Reference to a field of type 'PostingType[]'
+ */
+export type ListEnumPostingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostingType[]'>
     
 
 

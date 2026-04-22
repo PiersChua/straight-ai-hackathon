@@ -118,6 +118,7 @@ export const PostingScalarFieldEnum = {
   title: 'title',
   description: 'description',
   requirements: 'requirements',
+  type: 'type',
   questions: 'questions',
   isActive: 'isActive',
   createdAt: 'createdAt',

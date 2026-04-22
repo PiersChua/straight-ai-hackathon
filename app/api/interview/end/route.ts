@@ -11,11 +11,12 @@ export async function POST(req: NextRequest) {
     if (!session) {
       throw new ApiError("Unauthorized", 401);
     }
-    const { fullTranscription, interviewId } = await req.json();
+    const { fullTranscription, interviewId, conversationId } = await req.json();
     await prisma.interview.update({
       where: { id: interviewId },
       data: {
         fullTranscription,
+        conversationId,
       },
     });
 

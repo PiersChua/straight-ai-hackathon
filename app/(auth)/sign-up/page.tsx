@@ -3,27 +3,33 @@ import Link from "next/link";
 
 const SignUp = () => {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-6 py-16">
-      <div className="w-full max-w-md bg-zinc-950 border border-zinc-900 rounded-3xl p-10 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-        <div className="mb-8 space-y-1">
-          <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">
-            Get Started
-          </p>
-          <h1 className="text-2xl font-bold text-zinc-100 tracking-tight">
-            Create your account
-          </h1>
-          <p className="text-sm text-zinc-500 pt-1">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="text-zinc-200 hover:text-white underline underline-offset-4 decoration-zinc-700 hover:decoration-zinc-400 font-medium transition-all"
-            >
-              Login
-            </Link>
-          </p>
+    <main className="min-h-screen bg-slate-50/50 py-12 flex flex-col items-center justify-center">
+      <section className="w-full max-w-md px-6">
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm shadow-slate-200/40">
+          <header className="mb-6 space-y-1">
+            <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+              Create an account
+            </h1>
+            <p className="text-sm text-slate-500">
+              Join our platform to get started.
+            </p>
+          </header>
+
+          <SignUpForm />
+
+          <footer className="mt-6 pt-6 border-t border-slate-100 text-center">
+            <p className="text-sm text-slate-500">
+              Already have an account?{" "}
+              <Link
+                href="/login"
+                className="text-blue-600 hover:text-blue-700 font-medium underline-offset-4 hover:underline transition-all"
+              >
+                Login
+              </Link>
+            </p>
+          </footer>
         </div>
-        <SignUpForm />
-      </div>
+      </section>
     </main>
   );
 };

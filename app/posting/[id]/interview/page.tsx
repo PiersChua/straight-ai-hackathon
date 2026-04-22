@@ -75,7 +75,10 @@ function InterviewSession({ postingId }: { postingId: string }) {
     micStreamRef.current = null;
   }, []);
 
-  const onConnect = useCallback(() => setSessionState("active"), []);
+  const onConnect = useCallback(() => {
+    setSessionState("active");
+    conversationIdRef.current = conversation.getId();
+  }, []);
 
   const onDisconnect = useCallback(() => {
     if (!endCalledRef.current) {
@@ -178,8 +181,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
         .join("\n");
 
       interviewIdRef.current = interviewId;
-      conversationIdRef.current = conversation.getId();
-      conversation.startSession({
+      await conversation.startSession({
         signedUrl,
         dynamicVariables: { questions: promptContext },
       });
@@ -196,7 +198,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
     setSessionState("ended");
 
     try {
-      conversation.endSession();
+      await conversation.endSession();
     } catch (_) {}
 
     await sendEndToServer();

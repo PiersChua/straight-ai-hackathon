@@ -171,7 +171,7 @@ export type InterviewGroupByOutputType = {
   updatedAt: Date
   status: $Enums.InterviewStatus
   fullTranscription: string | null
-  conversationId: string
+  conversationId: string | null
   postingId: string
   userId: string
   _count: InterviewCountAggregateOutputType | null
@@ -203,7 +203,7 @@ export type InterviewWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   status?: Prisma.EnumInterviewStatusFilter<"Interview"> | $Enums.InterviewStatus
   fullTranscription?: Prisma.StringNullableFilter<"Interview"> | string | null
-  conversationId?: Prisma.StringFilter<"Interview"> | string
+  conversationId?: Prisma.StringNullableFilter<"Interview"> | string | null
   postingId?: Prisma.StringFilter<"Interview"> | string
   userId?: Prisma.StringFilter<"Interview"> | string
   score?: Prisma.XOR<Prisma.ScoreNullableScalarRelationFilter, Prisma.ScoreWhereInput> | null
@@ -217,7 +217,7 @@ export type InterviewOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   fullTranscription?: Prisma.SortOrderInput | Prisma.SortOrder
-  conversationId?: Prisma.SortOrder
+  conversationId?: Prisma.SortOrderInput | Prisma.SortOrder
   postingId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   score?: Prisma.ScoreOrderByWithRelationInput
@@ -234,7 +234,7 @@ export type InterviewWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   status?: Prisma.EnumInterviewStatusFilter<"Interview"> | $Enums.InterviewStatus
   fullTranscription?: Prisma.StringNullableFilter<"Interview"> | string | null
-  conversationId?: Prisma.StringFilter<"Interview"> | string
+  conversationId?: Prisma.StringNullableFilter<"Interview"> | string | null
   postingId?: Prisma.StringFilter<"Interview"> | string
   userId?: Prisma.StringFilter<"Interview"> | string
   score?: Prisma.XOR<Prisma.ScoreNullableScalarRelationFilter, Prisma.ScoreWhereInput> | null
@@ -248,7 +248,7 @@ export type InterviewOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   fullTranscription?: Prisma.SortOrderInput | Prisma.SortOrder
-  conversationId?: Prisma.SortOrder
+  conversationId?: Prisma.SortOrderInput | Prisma.SortOrder
   postingId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   _count?: Prisma.InterviewCountOrderByAggregateInput
@@ -265,7 +265,7 @@ export type InterviewScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Interview"> | Date | string
   status?: Prisma.EnumInterviewStatusWithAggregatesFilter<"Interview"> | $Enums.InterviewStatus
   fullTranscription?: Prisma.StringNullableWithAggregatesFilter<"Interview"> | string | null
-  conversationId?: Prisma.StringWithAggregatesFilter<"Interview"> | string
+  conversationId?: Prisma.StringNullableWithAggregatesFilter<"Interview"> | string | null
   postingId?: Prisma.StringWithAggregatesFilter<"Interview"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Interview"> | string
 }
@@ -276,7 +276,7 @@ export type InterviewCreateInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   score?: Prisma.ScoreCreateNestedOneWithoutInterviewInput
   posting: Prisma.PostingCreateNestedOneWithoutInterviewsInput
   user: Prisma.UserCreateNestedOneWithoutInterviewsInput
@@ -288,7 +288,7 @@ export type InterviewUncheckedCreateInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   postingId: string
   userId: string
   score?: Prisma.ScoreUncheckedCreateNestedOneWithoutInterviewInput
@@ -300,7 +300,7 @@ export type InterviewUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   score?: Prisma.ScoreUpdateOneWithoutInterviewNestedInput
   posting?: Prisma.PostingUpdateOneRequiredWithoutInterviewsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutInterviewsNestedInput
@@ -312,7 +312,7 @@ export type InterviewUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postingId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.ScoreUncheckedUpdateOneWithoutInterviewNestedInput
@@ -324,7 +324,7 @@ export type InterviewCreateManyInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   postingId: string
   userId: string
 }
@@ -335,7 +335,7 @@ export type InterviewUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type InterviewUncheckedUpdateManyInput = {
@@ -344,7 +344,7 @@ export type InterviewUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postingId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -505,7 +505,7 @@ export type InterviewCreateWithoutUserInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   score?: Prisma.ScoreCreateNestedOneWithoutInterviewInput
   posting: Prisma.PostingCreateNestedOneWithoutInterviewsInput
 }
@@ -516,7 +516,7 @@ export type InterviewUncheckedCreateWithoutUserInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   postingId: string
   score?: Prisma.ScoreUncheckedCreateNestedOneWithoutInterviewInput
 }
@@ -556,7 +556,7 @@ export type InterviewScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   status?: Prisma.EnumInterviewStatusFilter<"Interview"> | $Enums.InterviewStatus
   fullTranscription?: Prisma.StringNullableFilter<"Interview"> | string | null
-  conversationId?: Prisma.StringFilter<"Interview"> | string
+  conversationId?: Prisma.StringNullableFilter<"Interview"> | string | null
   postingId?: Prisma.StringFilter<"Interview"> | string
   userId?: Prisma.StringFilter<"Interview"> | string
 }
@@ -567,7 +567,7 @@ export type InterviewCreateWithoutPostingInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   score?: Prisma.ScoreCreateNestedOneWithoutInterviewInput
   user: Prisma.UserCreateNestedOneWithoutInterviewsInput
 }
@@ -578,7 +578,7 @@ export type InterviewUncheckedCreateWithoutPostingInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   userId: string
   score?: Prisma.ScoreUncheckedCreateNestedOneWithoutInterviewInput
 }
@@ -615,7 +615,7 @@ export type InterviewCreateWithoutScoreInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   posting: Prisma.PostingCreateNestedOneWithoutInterviewsInput
   user: Prisma.UserCreateNestedOneWithoutInterviewsInput
 }
@@ -626,7 +626,7 @@ export type InterviewUncheckedCreateWithoutScoreInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   postingId: string
   userId: string
 }
@@ -653,7 +653,7 @@ export type InterviewUpdateWithoutScoreInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posting?: Prisma.PostingUpdateOneRequiredWithoutInterviewsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutInterviewsNestedInput
 }
@@ -664,7 +664,7 @@ export type InterviewUncheckedUpdateWithoutScoreInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postingId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -675,7 +675,7 @@ export type InterviewCreateManyUserInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   postingId: string
 }
 
@@ -685,7 +685,7 @@ export type InterviewUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   score?: Prisma.ScoreUpdateOneWithoutInterviewNestedInput
   posting?: Prisma.PostingUpdateOneRequiredWithoutInterviewsNestedInput
 }
@@ -696,7 +696,7 @@ export type InterviewUncheckedUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postingId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.ScoreUncheckedUpdateOneWithoutInterviewNestedInput
 }
@@ -707,7 +707,7 @@ export type InterviewUncheckedUpdateManyWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postingId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -717,7 +717,7 @@ export type InterviewCreateManyPostingInput = {
   updatedAt?: Date | string
   status?: $Enums.InterviewStatus
   fullTranscription?: string | null
-  conversationId: string
+  conversationId?: string | null
   userId: string
 }
 
@@ -727,7 +727,7 @@ export type InterviewUpdateWithoutPostingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   score?: Prisma.ScoreUpdateOneWithoutInterviewNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutInterviewsNestedInput
 }
@@ -738,7 +738,7 @@ export type InterviewUncheckedUpdateWithoutPostingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.ScoreUncheckedUpdateOneWithoutInterviewNestedInput
 }
@@ -749,7 +749,7 @@ export type InterviewUncheckedUpdateManyWithoutPostingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   fullTranscription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  conversationId?: Prisma.StringFieldUpdateOperationsInput | string
+  conversationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -834,7 +834,7 @@ export type $InterviewPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     updatedAt: Date
     status: $Enums.InterviewStatus
     fullTranscription: string | null
-    conversationId: string
+    conversationId: string | null
     postingId: string
     userId: string
   }, ExtArgs["result"]["interview"]>

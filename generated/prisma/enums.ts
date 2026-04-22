@@ -25,3 +25,14 @@ export const InterviewStatus = {
 } as const
 
 export type InterviewStatus = (typeof InterviewStatus)[keyof typeof InterviewStatus]
+
+
+export const PostingType = {
+  INTERNSHIP: 'INTERNSHIP',
+  PROJECTS: 'PROJECTS',
+  MENTORSHIP: 'MENTORSHIP',
+  JOBS: 'JOBS',
+  OTHERS: 'OTHERS'
+} as const
+
+export type PostingType = (typeof PostingType)[keyof typeof PostingType]

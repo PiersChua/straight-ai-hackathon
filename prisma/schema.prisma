@@ -16,9 +16,16 @@ enum Role {
 
 enum InterviewStatus {
   PENDING
-  UNFINISHED
   ACCEPTED
   REJECTED
+}
+
+enum PostingType {
+  INTERNSHIP
+  PROJECTS
+  MENTORSHIP
+  JOBS
+  OTHERS
 }
 
 model User {
@@ -73,6 +80,7 @@ model Posting {
   title        String
   description  String
   requirements String?
+  type         PostingType
   questions    String[] // list of questions asked in the interview
   isActive     Boolean     @default(true)
   createdAt    DateTime    @default(now())
@@ -88,7 +96,7 @@ model Interview {
   updatedAt         DateTime        @updatedAt
   status            InterviewStatus @default(PENDING)
   fullTranscription String?         @db.Text
-  conversationId    String // conversation ID from elevenlabs
+  conversationId    String? // conversation ID from elevenlabs
   score             Score?
   posting           Posting         @relation(fields: [postingId], references: [id])
   postingId         String

@@ -30,6 +30,7 @@ export type PostingMinAggregateOutputType = {
   title: string | null
   description: string | null
   requirements: string | null
+  type: $Enums.PostingType | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -41,6 +42,7 @@ export type PostingMaxAggregateOutputType = {
   title: string | null
   description: string | null
   requirements: string | null
+  type: $Enums.PostingType | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,6 +54,7 @@ export type PostingCountAggregateOutputType = {
   title: number
   description: number
   requirements: number
+  type: number
   questions: number
   isActive: number
   createdAt: number
@@ -66,6 +69,7 @@ export type PostingMinAggregateInputType = {
   title?: true
   description?: true
   requirements?: true
+  type?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -77,6 +81,7 @@ export type PostingMaxAggregateInputType = {
   title?: true
   description?: true
   requirements?: true
+  type?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -88,6 +93,7 @@ export type PostingCountAggregateInputType = {
   title?: true
   description?: true
   requirements?: true
+  type?: true
   questions?: true
   isActive?: true
   createdAt?: true
@@ -173,6 +179,7 @@ export type PostingGroupByOutputType = {
   title: string
   description: string
   requirements: string | null
+  type: $Enums.PostingType
   questions: string[]
   isActive: boolean
   createdAt: Date
@@ -206,6 +213,7 @@ export type PostingWhereInput = {
   title?: Prisma.StringFilter<"Posting"> | string
   description?: Prisma.StringFilter<"Posting"> | string
   requirements?: Prisma.StringNullableFilter<"Posting"> | string | null
+  type?: Prisma.EnumPostingTypeFilter<"Posting"> | $Enums.PostingType
   questions?: Prisma.StringNullableListFilter<"Posting">
   isActive?: Prisma.BoolFilter<"Posting"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Posting"> | Date | string
@@ -220,6 +228,7 @@ export type PostingOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   requirements?: Prisma.SortOrderInput | Prisma.SortOrder
+  type?: Prisma.SortOrder
   questions?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -237,6 +246,7 @@ export type PostingWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Posting"> | string
   description?: Prisma.StringFilter<"Posting"> | string
   requirements?: Prisma.StringNullableFilter<"Posting"> | string | null
+  type?: Prisma.EnumPostingTypeFilter<"Posting"> | $Enums.PostingType
   questions?: Prisma.StringNullableListFilter<"Posting">
   isActive?: Prisma.BoolFilter<"Posting"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Posting"> | Date | string
@@ -251,6 +261,7 @@ export type PostingOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   requirements?: Prisma.SortOrderInput | Prisma.SortOrder
+  type?: Prisma.SortOrder
   questions?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -269,6 +280,7 @@ export type PostingScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Posting"> | string
   description?: Prisma.StringWithAggregatesFilter<"Posting"> | string
   requirements?: Prisma.StringNullableWithAggregatesFilter<"Posting"> | string | null
+  type?: Prisma.EnumPostingTypeWithAggregatesFilter<"Posting"> | $Enums.PostingType
   questions?: Prisma.StringNullableListFilter<"Posting">
   isActive?: Prisma.BoolWithAggregatesFilter<"Posting"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Posting"> | Date | string
@@ -280,6 +292,7 @@ export type PostingCreateInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -294,6 +307,7 @@ export type PostingUncheckedCreateInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -306,6 +320,7 @@ export type PostingUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -320,6 +335,7 @@ export type PostingUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -333,6 +349,7 @@ export type PostingCreateManyInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -344,6 +361,7 @@ export type PostingUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,6 +374,7 @@ export type PostingUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,6 +397,7 @@ export type PostingCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   requirements?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   questions?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -390,6 +410,7 @@ export type PostingMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   requirements?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -401,6 +422,7 @@ export type PostingMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   requirements?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -457,6 +479,10 @@ export type PostingCreatequestionsInput = {
   set: string[]
 }
 
+export type EnumPostingTypeFieldUpdateOperationsInput = {
+  set?: $Enums.PostingType
+}
+
 export type PostingUpdatequestionsInput = {
   set?: string[]
   push?: string | string[]
@@ -481,6 +507,7 @@ export type PostingCreateWithoutUserInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -493,6 +520,7 @@ export type PostingUncheckedCreateWithoutUserInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -535,6 +563,7 @@ export type PostingScalarWhereInput = {
   title?: Prisma.StringFilter<"Posting"> | string
   description?: Prisma.StringFilter<"Posting"> | string
   requirements?: Prisma.StringNullableFilter<"Posting"> | string | null
+  type?: Prisma.EnumPostingTypeFilter<"Posting"> | $Enums.PostingType
   questions?: Prisma.StringNullableListFilter<"Posting">
   isActive?: Prisma.BoolFilter<"Posting"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Posting"> | Date | string
@@ -546,6 +575,7 @@ export type PostingCreateWithoutInterviewsInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -559,6 +589,7 @@ export type PostingUncheckedCreateWithoutInterviewsInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -586,6 +617,7 @@ export type PostingUpdateWithoutInterviewsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -599,6 +631,7 @@ export type PostingUncheckedUpdateWithoutInterviewsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -610,6 +643,7 @@ export type PostingCreateManyUserInput = {
   title: string
   description: string
   requirements?: string | null
+  type: $Enums.PostingType
   questions?: Prisma.PostingCreatequestionsInput | string[]
   isActive?: boolean
   createdAt?: Date | string
@@ -621,6 +655,7 @@ export type PostingUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -633,6 +668,7 @@ export type PostingUncheckedUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -645,6 +681,7 @@ export type PostingUncheckedUpdateManyWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   requirements?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumPostingTypeFieldUpdateOperationsInput | $Enums.PostingType
   questions?: Prisma.PostingUpdatequestionsInput | string[]
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -688,6 +725,7 @@ export type PostingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   title?: boolean
   description?: boolean
   requirements?: boolean
+  type?: boolean
   questions?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -703,6 +741,7 @@ export type PostingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   description?: boolean
   requirements?: boolean
+  type?: boolean
   questions?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -716,6 +755,7 @@ export type PostingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   description?: boolean
   requirements?: boolean
+  type?: boolean
   questions?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -729,13 +769,14 @@ export type PostingSelectScalar = {
   title?: boolean
   description?: boolean
   requirements?: boolean
+  type?: boolean
   questions?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PostingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "description" | "requirements" | "questions" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["posting"]>
+export type PostingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "description" | "requirements" | "type" | "questions" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["posting"]>
 export type PostingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   interviews?: boolean | Prisma.Posting$interviewsArgs<ExtArgs>
@@ -760,6 +801,7 @@ export type $PostingPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     title: string
     description: string
     requirements: string | null
+    type: $Enums.PostingType
     questions: string[]
     isActive: boolean
     createdAt: Date
@@ -1194,6 +1236,7 @@ export interface PostingFieldRefs {
   readonly title: Prisma.FieldRef<"Posting", 'String'>
   readonly description: Prisma.FieldRef<"Posting", 'String'>
   readonly requirements: Prisma.FieldRef<"Posting", 'String'>
+  readonly type: Prisma.FieldRef<"Posting", 'PostingType'>
   readonly questions: Prisma.FieldRef<"Posting", 'String[]'>
   readonly isActive: Prisma.FieldRef<"Posting", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Posting", 'DateTime'>

@@ -1,7 +1,5 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Mic,
   Target,
@@ -9,179 +7,267 @@ import {
   ArrowRight,
   CheckCircle2,
   BarChart3,
+  Building,
+  User,
 } from "lucide-react";
+import Link from "next/link";
+import Header from "@/components/Navigation/Header";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import Header from "@/components/Navigation/Header";
 
-const Home = async () => {
+const LandingPage = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100">
-      {/* Navigation */}
-      <Header isLoggedIn={!!session} />
+    <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col items-center">
+      <Header isLoggedIn={!!session} role={session?.user.role as string} />
 
-      {/* Hero Section */}
-      <section className="px-6 pt-20 pb-32 max-w-5xl mx-auto text-center">
-        <Badge
-          variant="secondary"
-          className="mb-4 rounded-full px-4 py-1 text-indigo-700 bg-indigo-50 border-indigo-100"
-        >
-          Redesigning Opportunity Discovery
-        </Badge>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-slate-900">
-          Hire for <span className="text-indigo-600">Capability</span>,<br />{" "}
-          Not Pedigree.
-        </h1>
-        <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-          The merit-based matching platform that uses AI-scored assessments to
-          find top-tier talent based on what they can actually do—not where they
-          went to school.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button
-            size="lg"
-            className="bg-indigo-600 hover:bg-indigo-700 h-12 px-8 text-base shadow-lg shadow-indigo-200"
-          >
-            Find Opportunities <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-12 px-8 text-base border-slate-200"
-          >
-            For Employers
-          </Button>
-        </div>
-      </section>
+      {/* Main Container constrained to max-w-7xl */}
+      <main className="w-full max-w-7xl mx-auto flex flex-col px-6">
+        {/* --- 1. HERO SECTION --- */}
+        <section className="py-20 md:py-32 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 mb-8">
+            <span className="flex h-2 w-2 rounded-full bg-blue-600"></span>
+            <span className="text-xs font-medium text-slate-600">
+              A new standard for talent discovery
+            </span>
+          </div>
 
-      {/* Process Steps */}
-      <section id="how-it-works" className="bg-slate-50 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">The Capability Pipeline</h2>
-            <p className="text-slate-500">
-              A structured bridge between discovery and hire.
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-slate-900 mb-6 max-w-4xl leading-[1.1]">
+            Showcase what you can do. <br />
+            <span className="text-slate-400">Leave pedigree behind.</span>
+          </h1>
+
+          <p className="text-lg text-slate-500 mb-10 max-w-2xl leading-relaxed">
+            We connect talented individuals with forward-thinking employers
+            using objective, AI-driven capability assessments. Get hired for
+            your skills, not your network or school brand.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Button
+              asChild
+              className="bg-blue-600 hover:bg-blue-700! text-white h-11 px-8 rounded-lg font-medium transition-all"
+            >
+              <Link href="/sign-up">
+                Join us now <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              className="h-11 px-8 rounded-lg border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-medium transition-all"
+            >
+              <Link href="/sign-up">Start hiring</Link>
+            </Button>
+          </div>
+        </section>
+
+        <hr className="border-slate-100" />
+
+        {/* --- 2. THE PROBLEM & SOLUTION SECTION --- */}
+        <section className="py-20 md:py-24">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h2 className="text-xs font-semibold tracking-widest uppercase text-blue-600">
+                The Old Way is Broken
+              </h2>
+              <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+                Access shouldn't depend on who you know.
+              </h3>
+              <p className="text-slate-500 leading-relaxed text-lg">
+                Traditional hiring filters out highly capable people simply
+                because they lack insider connections or recognized university
+                names. Aptly levels the playing field by putting a structured,
+                unbiased evaluation step between discovery and the final
+                interview.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-8 space-y-6">
+              <h4 className="font-semibold text-slate-900">
+                The Aptly Difference
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Skills are evaluated before resumes are seen.",
+                  "Human bias is removed from the initial screening.",
+                  "Opportunities are awarded based on demonstrated potential.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-600">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-slate-100" />
+
+        {/* --- 3. HOW IT WORKS SECTION --- */}
+        <section className="py-20 md:py-24">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <h2 className="text-xs font-semibold tracking-widest uppercase text-blue-600">
+              How it Works
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+              The Capability Pipeline
+            </h3>
+            <p className="text-slate-500 text-lg">
+              A transparent, four-step process designed to highlight real
+              talent.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               {
                 icon: Target,
-                title: "Curate",
-                desc: "Candidates build portfolios focused on raw technical skillsets.",
+                title: "1. Build Profile",
+                desc: "Highlight your technical abilities, soft skills, and past projects.",
               },
               {
                 icon: Mic,
-                title: "Interview",
-                desc: "AI-driven voice interviews evaluate deep domain knowledge.",
+                title: "2. Voice Interview",
+                desc: "Complete a dynamic, AI-guided audio interview tailored to the role.",
               },
               {
                 icon: BarChart3,
-                title: "Score",
-                desc: "Responses are transcribed and ranked against hirer requirements.",
+                title: "3. Objective Scoring",
+                desc: "Our engine analyzes the transcript to score your fit for the specific job.",
               },
               {
                 icon: ShieldCheck,
-                title: "Match",
-                desc: "Hirers review the top-ranked candidates without bias.",
+                title: "4. Direct Match",
+                desc: "Employers review top-scoring candidates securely and without bias.",
               },
             ].map((step, i) => (
-              <div key={i} className="relative group">
-                <div className="mb-4 bg-white w-12 h-12 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 group-hover:border-indigo-200 group-hover:bg-indigo-50 transition-colors">
-                  <step.icon className="h-6 w-6 text-indigo-600" />
+              <div key={i} className="flex flex-col space-y-4">
+                <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center">
+                  <step.icon className="h-5 w-5 text-blue-600" />
                 </div>
-                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {step.desc}
-                </p>
+                <h4 className="text-lg font-semibold text-slate-900">
+                  {step.title}
+                </h4>
+                <p className="text-slate-500 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Two-Sided Benefits */}
-      <section className="py-24 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 className="text-4xl font-bold mb-6 tracking-tight">
-            For the Underdog <br />
-            <span className="text-slate-400 font-medium italic">
-              With Real Skills
-            </span>
-          </h2>
-          <ul className="space-y-4 mb-8">
-            {[
-              "Bypass the 'brand-name' filter automatically",
-              "Demonstrate capability through AI voice agents",
-              "Get scored on technical and soft skill depth",
-              "Connect with startups and mentors directly",
-            ].map((text, i) => (
-              <li key={i} className="flex items-start">
-                <CheckCircle2 className="h-5 w-5 text-emerald-500 mr-3 shrink-0 mt-0.5" />
-                <span className="text-slate-700">{text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Card className="border-slate-200 shadow-2xl rotate-1">
-          <CardContent className="p-8">
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-12 h-12 rounded-full bg-slate-200 animate-pulse" />
-              <div>
-                <div className="h-4 w-32 bg-slate-200 rounded animate-pulse mb-2" />
-                <div className="h-3 w-20 bg-slate-100 rounded animate-pulse" />
+        <hr className="border-slate-100" />
+
+        {/* --- 4. AUDIENCE BENEFITS SECTION --- */}
+        <section className="py-20 md:py-24">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Candidates */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 md:p-12 hover:border-slate-300 transition-colors">
+              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mb-8">
+                <User className="h-5 w-5 text-slate-700" />
               </div>
-              <Badge className="ml-auto bg-emerald-100 text-emerald-700 border-none">
-                94% Fit
-              </Badge>
+              <h3 className="text-2xl font-semibold text-slate-900 mb-4">
+                For Candidates
+              </h3>
+              <p className="text-slate-500 mb-8 leading-relaxed">
+                Stop throwing resumes into the void. Prove your worth directly
+                through interactive assessments and get matched with startups
+                and companies that value what you can actually build.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="text-slate-600 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>{" "}
+                  Bypass keyword filters
+                </li>
+                <li className="text-slate-600 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>{" "}
+                  Get detailed feedback scores
+                </li>
+              </ul>
+              <Link
+                href="/sign-up"
+                className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center gap-1 transition-colors"
+              >
+                Create your profile <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            <div className="space-y-3">
-              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-600 w-11/12" />
+
+            {/* Employers */}
+            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-10 md:p-12 text-white">
+              <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center mb-8">
+                <Building className="h-5 w-5 text-slate-300" />
               </div>
-              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-400 w-3/4" />
-              </div>
-              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-200 w-1/2" />
-              </div>
+              <h3 className="text-2xl font-semibold mb-4">For Hirers</h3>
+              <p className="text-slate-400 mb-8 leading-relaxed">
+                Save countless hours screening identical resumes. Input your
+                requirements, and let our AI engine conduct preliminary voice
+                interviews to surface the most capable candidates.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="text-slate-300 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>{" "}
+                  Custom automated interviews
+                </li>
+                <li className="text-slate-300 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>{" "}
+                  Granular suitability metrics
+                </li>
+              </ul>
+              <Link
+                href="/sign-up"
+                className="text-blue-400 font-medium hover:text-blue-300 inline-flex items-center gap-1 transition-colors"
+              >
+                Start headhunting <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            <p className="mt-6 text-xs text-slate-400 text-center uppercase tracking-widest font-semibold">
-              AI Assessment Breakdown
+          </div>
+        </section>
+
+        {/* --- 5. BOTTOM CTA SECTION --- */}
+        <section className="py-20 md:py-24 mb-12">
+          <div className="bg-blue-50 border border-blue-100 rounded-[2rem] p-12 md:p-20 text-center flex flex-col items-center">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 mb-6">
+              Ready to change how you connect?
+            </h2>
+            <p className="text-slate-600 mb-10 max-w-xl text-lg">
+              Whether you are an undergraduate looking for your big break or an
+              employer searching for hidden talent, Aptly is built for you.
             </p>
-          </CardContent>
-        </Card>
-      </section>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Button className="bg-blue-600 hover:bg-blue-600/90 text-white h-12 px-8 rounded-lg font-medium shadow-sm transition-all">
+                Get Started for Free
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
 
-      {/* Footer CTA */}
-      <section className="bg-indigo-600 py-20 px-6 text-center text-white">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Stop screening resumes. <br />
-          Start measuring capability.
-        </h2>
-        <p className="text-indigo-100 mb-10 max-w-xl mx-auto">
-          Join the waitlist to be among the first to access Aptly's talent
-          matching engine.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="rounded-md px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full"
-          />
-          <Button className="bg-white text-indigo-600 hover:bg-slate-100 px-8 py-3 h-auto font-bold">
-            Join Beta
-          </Button>
+      {/* --- FOOTER --- */}
+      <footer className="w-full border-t border-slate-100 bg-white py-10 mt-auto">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <span className="text-xl font-bold tracking-tight text-slate-900">
+            Aptly.
+          </span>
+          <p className="text-sm text-slate-400">
+            © 2026 Aptly. Built for the capable.
+          </p>
+          <div className="flex gap-6">
+            <Link
+              href="#"
+              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              Terms
+            </Link>
+            <Link
+              href="#"
+              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              Privacy
+            </Link>
+          </div>
         </div>
-      </section>
-
-      <footer className="py-12 text-center text-slate-400 text-sm border-t border-slate-100">
-        © 2026 Aptly. Built for the capable.
       </footer>
     </div>
   );
 };
 
-export default Home;
+export default LandingPage;

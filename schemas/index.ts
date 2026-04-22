@@ -1,3 +1,4 @@
+import { PostingType } from "@/generated/prisma/enums";
 import z from "zod";
 
 const SignupSchema = z.object({

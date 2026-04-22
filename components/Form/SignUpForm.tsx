@@ -3,13 +3,7 @@ import { useState, useTransition } from "react";
 import { useForm, Controller } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import {
   Select,
   SelectContent,
@@ -20,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { AlertCircle, Eye, EyeOff, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { SignupSchema } from "@/schemas";
 import { useRouter } from "next/navigation";
 
@@ -59,34 +53,34 @@ const SignUpForm = () => {
     });
   };
 
+  const inputStyles =
+    "bg-white border-slate-200 hover:border-slate-300 text-slate-900 placeholder:text-slate-400 focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 rounded-lg h-10 px-3 text-sm transition-all duration-200";
+
   return (
-    <form id="form-signup" onSubmit={form.handleSubmit(onSubmit)}>
-      <FieldGroup className="space-y-4">
+    <form
+      id="form-signup"
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="w-full"
+    >
+      <FieldGroup className="space-y-1">
         {/* Name */}
         <Controller
           name="name"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel
-                htmlFor="form-signup-name"
-                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500"
-              >
-                Name
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
+                Full Name
               </FieldLabel>
               <Input
                 {...field}
-                id="form-signup-name"
-                aria-invalid={fieldState.invalid}
-                placeholder="John Doe"
-                autoComplete="off"
-                className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-100 placeholder-zinc-600 focus:border-zinc-400 rounded-xl h-10 px-4 text-sm transition-all duration-200 data-[invalid]:border-zinc-500 selection:bg-zinc-700 selection:text-white"
+                placeholder="Jane Doe"
+                className={inputStyles}
               />
               {fieldState.invalid && (
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="text-[10px] font-bold text-red-400 uppercase tracking-wider"
-                />
+                <span className="text-[11px] text-red-500">
+                  {fieldState.error?.message}
+                </span>
               )}
             </Field>
           )}
@@ -97,165 +91,115 @@ const SignUpForm = () => {
           name="email"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel
-                htmlFor="form-signup-email"
-                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500"
-              >
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
                 Email Address
               </FieldLabel>
               <Input
                 {...field}
-                id="form-signup-email"
                 type="email"
-                aria-invalid={fieldState.invalid}
-                placeholder="john@example.com"
-                autoComplete="off"
-                className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-100 placeholder-zinc-600 focus:border-zinc-400 rounded-xl h-10 px-4 text-sm transition-all duration-200 data-[invalid]:border-zinc-500 selection:bg-zinc-700 selection:text-white"
+                placeholder="name@company.com"
+                className={inputStyles}
               />
               {fieldState.invalid && (
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="text-[10px] font-bold text-red-400 uppercase tracking-wider"
-                />
+                <span className="text-[11px] text-red-500">
+                  {fieldState.error?.message}
+                </span>
               )}
             </Field>
           )}
         />
+
+        {/* Role Select */}
         <Controller
           name="role"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel
-                htmlFor="form-signup-role"
-                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500"
-              >
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
                 I am a
               </FieldLabel>
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger
-                  id="form-signup-role"
-                  className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 data-[invalid]:border-red-500/50 text-zinc-100 focus:border-zinc-400 px-4 rounded-xl h-10 text-sm transition-all duration-200"
-                  data-invalid={fieldState.invalid || undefined}
-                  aria-invalid={fieldState.invalid}
-                >
-                  <SelectValue
-                    placeholder={
-                      <span className="text-zinc-600">Select a role...</span>
-                    }
-                  />
+                <SelectTrigger className={inputStyles}>
+                  <SelectValue placeholder="Select role" />
                 </SelectTrigger>
-                <SelectContent className="bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-100">
+                <SelectContent className="bg-white border-slate-200 rounded-lg shadow-lg">
                   <SelectItem
                     value="CANDIDATE"
-                    className="text-sm focus:bg-zinc-500 focus:text-zinc-100 rounded-lg cursor-pointer"
+                    className="text-sm cursor-pointer"
                   >
                     Candidate
                   </SelectItem>
-                  <SelectItem
-                    value="HIRER"
-                    className="text-sm focus:bg-zinc-500 focus:text-zinc-100 rounded-lg cursor-pointer"
-                  >
+                  <SelectItem value="HIRER" className="text-sm cursor-pointer">
                     Hirer
                   </SelectItem>
                 </SelectContent>
               </Select>
-              {fieldState.invalid && (
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="text-[10px] font-bold text-red-400 uppercase tracking-wider"
-                />
-              )}
             </Field>
           )}
         />
-        {/* Password */}
+
+        {/* Password (Separate Row) */}
         <Controller
           name="password"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel
-                htmlFor="form-signup-password"
-                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500"
-              >
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
                 Password
               </FieldLabel>
               <div className="relative">
                 <Input
                   {...field}
                   type={showPassword ? "text" : "password"}
-                  id="form-signup-password"
-                  aria-invalid={fieldState.invalid}
                   placeholder="••••••••"
-                  autoComplete="off"
-                  className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-100 placeholder-zinc-600 focus:border-zinc-400 rounded-xl h-10 px-4 text-sm transition-all duration-200 data-[invalid]:border-zinc-500 selection:bg-zinc-700 selection:text-white"
+                  className={inputStyles}
                 />
                 <button
-                  disabled={isPending}
                   type="button"
-                  onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                 >
-                  {showPassword ? <Eye size={14} /> : <EyeOff size={14} />}
+                  {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
                 </button>
               </div>
-              {fieldState.invalid ? (
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="text-[10px] font-bold text-red-400 uppercase tracking-wider"
-                />
-              ) : (
-                <FieldDescription className="text-[10px] text-zinc-600 font-medium">
-                  Min. 8 characters
-                </FieldDescription>
+              {fieldState.invalid && (
+                <span className="text-[11px] text-red-500">
+                  {fieldState.error?.message}
+                </span>
               )}
             </Field>
           )}
         />
 
-        {/* Confirm Password */}
+        {/* Confirm Password (Separate Row) */}
         <Controller
           name="confirmPassword"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel
-                htmlFor="form-signup-confirm-password"
-                className="text-[10px] font-bold uppercase tracking-widest text-zinc-500"
-              >
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
                 Confirm Password
               </FieldLabel>
               <div className="relative">
                 <Input
                   {...field}
                   type={showConfirmPassword ? "text" : "password"}
-                  id="form-signup-confirm-password"
-                  aria-invalid={fieldState.invalid}
                   placeholder="••••••••"
-                  autoComplete="off"
-                  className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-100 placeholder-zinc-600 focus:border-zinc-400 rounded-xl h-10 px-4 text-sm transition-all duration-200 data-[invalid]:border-zinc-500 selection:bg-zinc-700 selection:text-white"
+                  className={inputStyles}
                 />
                 <button
-                  disabled={isPending}
                   type="button"
-                  onClick={() => setShowConfirmPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                 >
                   {showConfirmPassword ? (
-                    <Eye size={14} />
+                    <Eye size={16} />
                   ) : (
-                    <EyeOff size={14} />
+                    <EyeOff size={16} />
                   )}
                 </button>
               </div>
-              {fieldState.invalid && (
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="text-[10px] font-bold text-red-400 uppercase tracking-wider"
-                />
-              )}
             </Field>
           )}
         />
@@ -264,31 +208,28 @@ const SignUpForm = () => {
         {error && (
           <Alert
             variant="destructive"
-            className="bg-red-500/5 border-red-500/20 text-red-400 rounded-2xl animate-in fade-in slide-in-from-top-2"
+            className="bg-red-50 border-red-100 text-red-700 rounded-lg py-2 mt-2"
           >
-            <AlertCircle className="h-4 w-4 !text-red-400" />
-            <AlertTitle className="text-[10px] font-black uppercase tracking-[0.2em] mb-1">
-              Error
-            </AlertTitle>
-            <AlertDescription className="text-[10px] font-bold uppercase tracking-wider opacity-90">
-              {error}
-            </AlertDescription>
-
-            <button
-              onClick={() => setError("")}
-              className="absolute right-4 top-4 text-red-400/50 hover:text-red-400 transition-colors"
-            >
-              <X size={14} />
-            </button>
+            <div className="flex items-center justify-between w-full">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="h-3.5 w-3.5" />
+                <AlertDescription className="text-xs font-medium">
+                  {error}
+                </AlertDescription>
+              </div>
+              <button onClick={() => setError("")}>
+                <X size={14} className="opacity-50 hover:opacity-100" />
+              </button>
+            </div>
           </Alert>
         )}
 
         <Button
           disabled={isPending}
           type="submit"
-          className="cursor-pointer w-full h-12 bg-zinc-100 hover:bg-white text-zinc-950 disabled:bg-zinc-800 disabled:text-zinc-500 disabled:cursor-not-allowed border border-zinc-200 font-black text-[10px] uppercase tracking-[0.2em] rounded-xl transition-all duration-300 shadow-sm group"
+          className="w-full h-10 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-all active:scale-[0.99] disabled:opacity-70"
         >
-          {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Create Account
         </Button>
       </FieldGroup>
