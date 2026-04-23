@@ -1,136 +1,106 @@
-# 🚀 Next.js + Prisma + PostgreSQL Setup Guide
+# Aptly
 
-This guide will walk you through setting up the project locally, configuring the database, and working with Prisma migrations properly.
+Aptly is a two-sided talent matching platform that evaluates candidates on demonstrated capability rather than pedigree, school brand, or social network access. It inserts a structured, AI-scored assessment layer between candidate discovery and employer review — ensuring no human bias enters the process until a candidate's capability has already been established and ranked.
 
 ---
 
-## 📦 1. Install Dependencies
+## Tech Stack
 
-First, install all required packages:
+- **Framework** — Next.js (App Router)
+- **Database** — PostgreSQL via Prisma ORM
+- **Auth** — Better Auth
+- **AI / Voice** — OpenAI, ElevenLabs Conversational AI
+
+---
+
+## Local Setup
+
+### 1. Clone & Install
 
 ```bash
+git clone <repo-url>
+cd aptly
 npm install
 ```
 
----
+### 2. Environment Variables
 
-## ⚙️ 2. Environment Variables
-
-Create a `.env` file in the root of the project.
-
-Add your PostgreSQL connection string:
+Create a `.env` file in the project root:
 
 ```env
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+# Database
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/aptly?schema=public"
+
+# Auth
+BETTER_AUTH_SECRET=your_secret_here
+BETTER_AUTH_URL=http://localhost:3000
+
+# AI Services
+OPENAI_API_KEY=your_openai_key
+ELEVENLABS_API_KEY=your_elevenlabs_key
+ELEVENLABS_AGENT_ID=your_agent_id
 ```
 
-Example:
+Generate a secure `BETTER_AUTH_SECRET` with:
 
-```env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/mydb"
+```bash
+openssl rand -base64 32
 ```
+Alternatively, generate it at https://better-auth.com/docs/installation
+### 3. Database Setup
 
----
+This project uses a custom Prisma config. **Always include the `--config` flag** in Prisma commands or they will fail.
 
-## 🧱 3. Prisma Setup
-
-This project uses a custom Prisma config file:
-
-```
-prisma/prisma.config.ts
-```
-
-Because of this, **you MUST always include the config flag** in Prisma commands:
-
-```
---config=prisma/prisma.config.ts
-```
-
----
-
-## 🗄️ 4. Run Migrations (First Time Setup)
-
-To create the database schema:
+Run the initial migration:
 
 ```bash
 npx prisma migrate dev --name init --config=prisma/prisma.config.ts
 ```
 
-This will:
+This creates the database schema and generates the Prisma Client.
 
-* Create the database (if it doesn't exist)
-* Apply migrations
-* Generate Prisma Client
-
----
-
-## 🔄 5. When You Change the Schema
-
-Whenever you modify `schema.prisma`, you need to:
-
-### 1. Create & Apply Migration
-
-```bash
-npx prisma migrate dev --name your_migration_name --config=prisma/prisma.config.ts
-```
-
-### 2. Generate Prisma Client
-
-```bash
-npx prisma generate --config=prisma/prisma.config.ts
-```
-
-> ⚠️ Important:
-> Always regenerate the Prisma Client after schema changes, or your app may break.
-
----
-
-## 🚫 Common Mistake
-
-If you see errors like:
-
-* "DATABASE_URL not found"
-* Prisma using the wrong config
-
-👉 It usually means you **forgot the config flag**:
-
-```
---config=prisma/prisma.config.ts
-```
-
----
-
-## 🧪 6. View Database in Prisma Studio
-
-To open Prisma Studio:
-
-```bash
-npx prisma studio --config=prisma/prisma.config.ts
-```
-
----
-
-## 🚀 7. Run the Development Server
+### 4. Run the Dev Server
 
 ```bash
 npm run dev
 ```
 
----
-
-## 🧠 Quick Workflow Summary
-
-1. Edit `schema.prisma`
-2. Run migration:
-
-   ```bash
-   npx prisma migrate dev --name update --config=prisma/prisma.config.ts
-   ```
-3. Generate client:
-
-   ```bash
-   npx prisma generate --config=prisma/prisma.config.ts
-   ```
-4. Continue developing
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
+
+## Prisma Workflow
+
+Whenever you modify `schema.prisma`:
+
+```bash
+# 1. Apply migration
+npx prisma migrate dev --name your_migration_name --config=prisma/prisma.config.ts
+
+# 2. Regenerate Prisma Client
+npx prisma generate --config=prisma/prisma.config.ts
+```
+
+---
+
+## ElevenLabs Agent Setup
+
+Aptly uses an ElevenLabs Conversational AI agent to conduct structured voice interviews with candidates.
+
+### Creating the Agent
+
+1. Go to [elevenlabs.io](https://elevenlabs.io) and navigate to **Conversational AI → Agents**
+2. Create a new agent and configure the following:
+
+### Dynamic Variables
+
+| Variable    | Description                                                                        |
+| ----------- | ---------------------------------------------------------------------------------- |
+| `questions` | The list of interview questions for the specific job posting, injected per session |
+
+### Getting Your Credentials
+
+After setup, copy the following values into your `.env`:
+
+- `ELEVENLABS_API_KEY` — found under **Profile → API Keys**
+- `ELEVENLABS_AGENT_ID` — found on the agent's settings page

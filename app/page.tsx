@@ -249,20 +249,6 @@ const Home = async () => {
           <p className="text-sm text-slate-400">
             © 2026 Aptly. Built for the capable.
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="#"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Terms
-            </Link>
-            <Link
-              href="#"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Privacy
-            </Link>
-          </div>
         </div>
       </footer>
     </div>

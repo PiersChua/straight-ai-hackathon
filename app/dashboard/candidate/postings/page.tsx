@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma";
 
 const PostingsPage = async () => {
   const postings = await prisma.posting.findMany({
+    where: {
+      isActive: true,
+    },
     include: {
       _count: {
         select: { interviews: true },
