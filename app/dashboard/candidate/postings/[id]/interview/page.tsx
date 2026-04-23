@@ -135,7 +135,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
         fullTranscription: transcriptRef.current,
       }),
     });
-    router.push("/dashboard/candidateinterviews");
+    router.push("/dashboard/candidate/interviews");
   }, [router, stopVolumePolling]);
 
   useEffect(() => {
@@ -179,7 +179,6 @@ function InterviewSession({ postingId }: { postingId: string }) {
       const promptContext = posting.questions
         .map((q, i) => `${i + 1}. ${q}`)
         .join("\n");
-
       interviewIdRef.current = interviewId;
       await conversation.startSession({
         signedUrl,
@@ -206,25 +205,27 @@ function InterviewSession({ postingId }: { postingId: string }) {
 
   const isAgentSpeaking = conversation.isSpeaking;
   return (
-    <div className="flex h-screen w-full bg-black text-zinc-100 overflow-hidden relative">
+    <div className="flex h-screen w-full bg-white text-slate-900 overflow-hidden relative">
       {/* Idle / connecting overlay */}
       {(sessionState === "idle" || sessionState === "connecting") && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-6 bg-black/90">
-          <div className="w-20 h-20 rounded-full border border-zinc-800 flex items-center justify-center">
-            <Bot size={36} strokeWidth={1} className="text-zinc-400" />
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-6 bg-white/95 backdrop-blur-sm">
+          <div className="w-20 h-20 rounded-full border border-blue-100 bg-blue-50 flex items-center justify-center shadow-sm">
+            <Bot size={36} strokeWidth={1} className="text-blue-600" />
           </div>
           <div className="text-center max-w-xs">
-            <p className="text-base font-medium mb-1">Ready to begin?</p>
-            <p className="text-sm text-zinc-500">
-              The AI interviewer will ask you a series of questions. Make sure
-              your microphone is connected.
+            <p className="text-base font-bold mb-1 text-slate-900">
+              Ready to begin?
+            </p>
+            <p className="text-sm text-slate-500 font-medium">
+              Aptly Agent will ask you a series of questions. Make sure your
+              microphone is connected.
             </p>
           </div>
-          {error && <p className="text-sm text-red-400">{error}</p>}
+          {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
           <button
             onClick={handleStart}
             disabled={sessionState === "connecting"}
-            className="px-8 py-3 rounded-full bg-white text-black text-sm font-semibold hover:bg-zinc-200 transition disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-8 py-3 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 shadow-md shadow-blue-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {sessionState === "connecting"
               ? "Connecting..."
@@ -236,23 +237,25 @@ function InterviewSession({ postingId }: { postingId: string }) {
       <main className="flex flex-1 items-center justify-center gap-6 p-12 h-[calc(100vh-160px)]">
         {/* AI card */}
         <div
-          className={`flex-1 max-w-2xl h-full rounded-3xl bg-zinc-900/50 border flex flex-col items-center justify-center transition-all duration-300 ${
+          className={`flex-1 max-w-2xl h-full rounded-3xl bg-slate-50 border flex flex-col items-center justify-center transition-all duration-300 ${
             isAgentSpeaking
-              ? "border-emerald-500 shadow-[0_0_40px_rgba(16,185,129,0.1)]"
-              : "border-zinc-800"
+              ? "border-emerald-500 shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+              : "border-slate-300 shadow-md"
           }`}
         >
           <div className="flex flex-col items-center gap-10">
             <div
               className={`w-40 h-40 rounded-full border-2 flex items-center justify-center transition-colors duration-300 ${
-                isAgentSpeaking ? "border-emerald-500" : "border-zinc-700"
+                isAgentSpeaking
+                  ? "border-emerald-500 bg-emerald-50"
+                  : "border-slate-300 bg-white"
               }`}
             >
               <Bot
                 size={72}
                 strokeWidth={1}
                 className={
-                  isAgentSpeaking ? "text-emerald-500" : "text-zinc-600"
+                  isAgentSpeaking ? "text-emerald-600" : "text-slate-500"
                 }
               />
             </div>
@@ -263,7 +266,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
                   className={`w-1 rounded-full transition-all duration-150 ${
                     isAgentSpeaking
                       ? "bg-emerald-500 animate-waveform"
-                      : "bg-zinc-700"
+                      : "bg-slate-300"
                   }`}
                   style={{
                     height: isAgentSpeaking
@@ -275,34 +278,36 @@ function InterviewSession({ postingId }: { postingId: string }) {
               ))}
             </div>
             <p
-              className={`text-sm tracking-widest uppercase font-medium ${
-                isAgentSpeaking ? "text-emerald-500" : "text-zinc-500"
+              className={`text-sm tracking-widest uppercase font-bold ${
+                isAgentSpeaking ? "text-emerald-600" : "text-slate-500"
               }`}
             >
-              AI Interviewer
+              Aptly Agent
             </p>
           </div>
         </div>
 
         {/* User card */}
         <div
-          className={`flex-1 max-w-2xl h-full rounded-3xl bg-zinc-900/50 border flex flex-col items-center justify-center transition-all duration-300 ${
+          className={`flex-1 max-w-2xl h-full rounded-3xl bg-slate-50 border flex flex-col items-center justify-center transition-all duration-300 ${
             userSpeaking
-              ? "border-blue-500 shadow-[0_0_40px_rgba(59,130,246,0.15)]"
-              : "border-zinc-800"
+              ? "border-blue-500 shadow-[0_0_40px_rgba(59,130,246,0.2)]"
+              : "border-slate-300 shadow-md"
           }`}
         >
           <div className="flex flex-col items-center gap-10">
             {/* Avatar */}
             <div
               className={`w-40 h-40 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                userSpeaking ? "border-blue-500" : "border-zinc-700"
+                userSpeaking
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-slate-300 bg-white"
               }`}
             >
               <User
                 size={72}
                 strokeWidth={1}
-                className={userSpeaking ? "text-blue-500" : "text-zinc-600"}
+                className={userSpeaking ? "text-blue-600" : "text-slate-500"}
               />
             </div>
 
@@ -314,7 +319,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
                   className={`w-1 rounded-full transition-all duration-150 ${
                     userSpeaking
                       ? "bg-blue-500 animate-waveform"
-                      : "bg-zinc-700"
+                      : "bg-slate-300"
                   }`}
                   style={{
                     height: userSpeaking
@@ -328,8 +333,8 @@ function InterviewSession({ postingId }: { postingId: string }) {
 
             {/* Label */}
             <p
-              className={`text-sm tracking-widest uppercase font-medium ${
-                userSpeaking ? "text-blue-500" : "text-zinc-500"
+              className={`text-sm tracking-widest uppercase font-bold ${
+                userSpeaking ? "text-blue-600" : "text-slate-500"
               }`}
             >
               You
@@ -339,7 +344,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
       </main>
       {/* Captions */}
       {captionVisible && (
-        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 px-6 py-3 max-w-2xl text-center text-sm text-zinc-300 bg-zinc-900/60 border border-zinc-800 rounded-xl transition-opacity duration-300">
+        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 px-6 py-3 max-w-2xl text-center text-sm text-slate-700 font-medium bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl rounded-xl transition-opacity duration-300">
           <span
             className={
               captionFading
@@ -356,7 +361,7 @@ function InterviewSession({ postingId }: { postingId: string }) {
         <footer className="absolute bottom-0 left-0 right-0 flex justify-center p-8">
           <button
             onClick={handleEnd}
-            className="flex items-center gap-3 px-10 py-5 rounded-full bg-red-600 hover:bg-red-700 transition"
+            className="flex items-center gap-3 px-10 py-5 rounded-full bg-rose-500 hover:bg-rose-600 shadow-md shadow-rose-200 transition"
           >
             <PhoneOff size={20} className="text-white" />
             <span className="text-white font-semibold">End Interview</span>

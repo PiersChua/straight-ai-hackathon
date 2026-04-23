@@ -14,6 +14,7 @@ import {
   AlertCircle,
   FileText,
   MessageSquare,
+  XCircle,
 } from "lucide-react";
 import { getDisplayDate } from "@/utils";
 
@@ -40,29 +41,18 @@ const InterviewsPage = async () => {
             </p>
           </div>
           <div className="text-xs font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
-            {interviews.length} Applications
+            {interviews.length} INTERVIEWS(s)
           </div>
         </header>
 
         {/* Results Grid */}
         {interviews.length === 0 ? (
-          <div className="py-24 text-center bg-slate-50/50 border border-dashed border-slate-200 rounded-[2rem] flex flex-col items-center">
-            <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 mb-4">
-              <MessageSquare className="h-8 w-8 text-blue-600" />
-            </div>
-            <h3 className="text-slate-900 font-semibold text-lg">
-              No interviews yet
-            </h3>
-            <p className="text-slate-400 text-sm mt-1 max-w-xs mx-auto mb-6">
-              Head over to Discovery to find opportunities and start your first
-              capability assessment.
+          <div className="py-24 text-center flex flex-col items-center">
+            <MessageSquare className="h-8 w-8 text-slate-300 mb-4" />
+            <h3 className="text-slate-900 font-medium"> No interviews yet</h3>
+            <p className="text-slate-400 text-sm mt-1 max-w-xs mx-auto">
+              Find opportunities and start your first capability assessment.
             </p>
-            <Button
-              asChild
-              className="bg-blue-600 hover:bg-blue-600/90 text-white rounded-lg px-8"
-            >
-              <Link href="/postings">Browse Opportunities</Link>
-            </Button>
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,17 +139,17 @@ const StatusBadge = ({ status }: { status: string }) => {
   > = {
     ACCEPTED: {
       label: "Accepted",
-      className: "bg-emerald-50 text-emerald-700 border-emerald-100",
+      className: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
       icon: CheckCircle2,
     },
     REJECTED: {
       label: "Rejected",
-      className: "bg-red-50 text-red-700 border-red-100",
-      icon: AlertCircle,
+      className: "text-red-400 bg-red-400/10 border-red-400/20",
+      icon: XCircle,
     },
     PENDING: {
       label: "Pending",
-      className: "bg-blue-50 text-blue-700 border-blue-100",
+      className: "text-amber-400 bg-amber-400/10 border-amber-400/20",
       icon: Timer,
     },
   };

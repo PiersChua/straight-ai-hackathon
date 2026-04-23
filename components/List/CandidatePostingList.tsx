@@ -16,7 +16,6 @@ import {
   Search,
   X,
   TrendingUp,
-  Calendar,
 } from "lucide-react";
 import Link from "next/link";
 import { Posting, PostingType } from "@/generated/prisma/client";
@@ -159,7 +158,7 @@ export default function CandidatePostingList({
           ))}
         </div>
       ) : (
-        <div className="py-24 text-center rounded-3xl flex flex-col items-center">
+        <div className="py-24 text-center flex flex-col items-center">
           <Search className="h-8 w-8 text-slate-300 mb-4" />
           <h3 className="text-slate-900 font-medium">No matches found</h3>
           <p className="text-slate-400 text-sm mt-1 max-w-xs mx-auto">

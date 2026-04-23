@@ -67,20 +67,23 @@ const PostingPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             {hasInterviewed ? (
               <Button
                 disabled={hasInterviewed}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg shadow-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg shadow-blue-100 transition-all"
               >
                 Interview completed
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             ) : (
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-6 rounded-xl shadow-lg shadow-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]">
+              <Button
+                asChild
+                className="bg-blue-600 hover:bg-blue-700! text-white font-bold px-8 py-6 rounded-xl shadow-lg shadow-blue-100 transition-all"
+              >
                 <Link
+                  className="flex items-center"
                   href={`/dashboard/candidate/postings/${posting.id}/interview`}
                 >
-                  Apply for this {posting.type.toLowerCase()}
+                  Apply for this {posting.type.toLowerCase()}{" "}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-
-                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             )}
           </div>
@@ -106,18 +109,8 @@ const PostingPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <h2 className="text-xs font-black text-blue-600 uppercase tracking-[0.2em]">
                   Requirements
                 </h2>
-                <div className="bg-slate-50/50 border border-slate-100 rounded-3xl p-8">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {posting.requirements.split("\n").map((req, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 text-slate-600 text-sm"
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="bg-slate-50/50 border border-slate-100 rounded-3xl p-4 whitespace-pre-line">
+                  {posting.requirements}
                 </div>
               </section>
             )}

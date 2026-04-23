@@ -19,7 +19,7 @@ export default async function CreatePostingPage() {
               Create Posting
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">
-              Fill in the details below to publish a new opening
+              Open up a new opportunity
             </p>
           </div>
           <div className="px-6 py-5">

@@ -56,20 +56,12 @@ export default async function PostingsPage() {
 
         {/* Empty state */}
         {postings.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-center">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-4">
-              <Briefcase size={22} className="text-slate-400" />
-            </div>
-            <p className="text-slate-700 font-medium">No postings yet</p>
-            <p className="text-sm text-slate-400 mt-1 mb-6">
+          <div className="py-24 text-center flex flex-col items-center">
+            <Briefcase className="h-8 w-8 text-slate-300 mb-4" />
+            <h3 className="text-slate-900 font-medium"> No postings yet</h3>
+            <p className="text-slate-400 text-sm mt-1 max-w-xs mx-auto">
               Create your first posting to start receiving applications
             </p>
-            <Button
-              asChild
-              className="h-9 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg"
-            >
-              <Link href="/postings/create">Create a posting</Link>
-            </Button>
           </div>
         ) : (
           <div className="grid gap-3">

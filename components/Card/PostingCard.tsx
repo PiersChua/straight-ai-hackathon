@@ -20,13 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import {
-  MoreHorizontal,
-  Pencil,
-  Trash2,
-  Users,
-  CircleDot,
-} from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, Users, CircleDot } from "lucide-react";
 import { getDisplayDate } from "@/utils";
 import { Posting } from "@/generated/prisma/client";
 
@@ -100,7 +94,7 @@ export const PostingCard = ({ posting, typeColors }: PostingCardProps) => {
           {/* Actions */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="h-8 w-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors opacity-0 group-hover:opacity-100">
+              <button className="h-8 w-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
                 <MoreHorizontal size={16} />
               </button>
             </DropdownMenuTrigger>
@@ -108,6 +102,15 @@ export const PostingCard = ({ posting, typeColors }: PostingCardProps) => {
               align="end"
               className="w-40 bg-white border-slate-200 rounded-lg shadow-lg"
             >
+              <DropdownMenuItem asChild>
+                <Link
+                  href={`/dashboard/hirer/postings/${posting.id}/interviews`}
+                  className="flex items-center gap-2 text-sm cursor-pointer"
+                >
+                  <Users size={13} />
+                  View Interviews
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
                   href={`/dashboard/hirer/postings/edit/${posting.id}`}

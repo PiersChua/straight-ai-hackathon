@@ -1,6 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageCircle, Mic2, Sparkles, HelpCircle } from "lucide-react";
+import {
+  MessageCircle,
+  Mic2,
+  Sparkles,
+  HelpCircle,
+  Timer,
+  CheckCircle2,
+  XCircle,
+} from "lucide-react";
 import AudioPlayerCard from "@/components/Card/AudioPlayerCard";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
@@ -8,6 +16,23 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { getDisplayDate } from "@/utils";
 
+const statusDisplay = {
+  PENDING: {
+    label: "Pending Review",
+    icon: Timer,
+    className: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+  },
+  ACCEPTED: {
+    label: "Accepted",
+    icon: CheckCircle2,
+    className: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
+  },
+  REJECTED: {
+    label: "Rejected",
+    icon: XCircle,
+    className: "text-red-400 bg-red-400/10 border-red-400/20",
+  },
+};
 const InterviewPage = async ({
   params,
 }: {
@@ -27,6 +52,8 @@ const InterviewPage = async ({
   if (!interview) notFound();
 
   const score = interview.score;
+  const status = statusDisplay[interview.status];
+
   // Calculate percentage for the donut chart (assuming 100 is max overall)
   const overallPercentage = score?.overall || 0;
 
@@ -46,8 +73,10 @@ const InterviewPage = async ({
             </h1>
           </div>
           <div className="text-right">
-            <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-2">
-              {interview.status}
+            <div
+              className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border inline-block mb-2 ${status.className}`}
+            >
+              {status.label}
             </div>
             <p className="text-slate-400 text-xs font-medium">
               Attempted {getDisplayDate(interview.createdAt)}
