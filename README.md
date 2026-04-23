@@ -19,7 +19,6 @@ Aptly is a two-sided talent matching platform that evaluates candidates on demon
 
 ```bash
 git clone <repo-url>
-cd aptly
 npm install
 ```
 
@@ -83,6 +82,18 @@ npx prisma generate --config=prisma/prisma.config.ts
 
 ---
 
+## OpenAI Setup
+ 
+Aptly uses OpenAI for AI-powered candidate assessment and scoring.
+ 
+### Getting Your API Key
+ 
+1. Go to [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Create a new secret key
+3. Copy it into your `.e nv` as `OPENAI_API_KEY`
+
+---
+
 ## ElevenLabs Agent Setup
 
 Aptly uses an ElevenLabs Conversational AI agent to conduct structured voice interviews with candidates.
@@ -94,9 +105,9 @@ Aptly uses an ElevenLabs Conversational AI agent to conduct structured voice int
 
 ### Dynamic Variables
 
-| Variable    | Description                                                                        |
-| ----------- | ---------------------------------------------------------------------------------- |
-| `questions` | The list of interview questions for the specific job posting, injected per session |
+| Variable    | Description                                                                                 |
+| ----------- | --------------------------------------------------------------------------------------------|
+| `questions` | The list of interview questions for the specific posting, injected per conversation session |
 
 ### Getting Your Credentials
 
