@@ -37,6 +37,13 @@ export type UserMinAggregateOutputType = {
   image: string | null
   bio: string | null
   resumeKey: string | null
+  headline: string | null
+  location: string | null
+  isProfileComplete: boolean | null
+  availability: string | null
+  preferredRole: string | null
+  openToWork: boolean | null
+  resumeUrl: string | null
   companyName: string | null
   designation: string | null
 }
@@ -54,6 +61,13 @@ export type UserMaxAggregateOutputType = {
   image: string | null
   bio: string | null
   resumeKey: string | null
+  headline: string | null
+  location: string | null
+  isProfileComplete: boolean | null
+  availability: string | null
+  preferredRole: string | null
+  openToWork: boolean | null
+  resumeUrl: string | null
   companyName: string | null
   designation: string | null
 }
@@ -72,6 +86,15 @@ export type UserCountAggregateOutputType = {
   bio: number
   resumeKey: number
   skills: number
+  headline: number
+  location: number
+  isProfileComplete: number
+  experience: number
+  availability: number
+  preferredRole: number
+  openToWork: number
+  projects: number
+  resumeUrl: number
   companyName: number
   designation: number
   _all: number
@@ -91,6 +114,13 @@ export type UserMinAggregateInputType = {
   image?: true
   bio?: true
   resumeKey?: true
+  headline?: true
+  location?: true
+  isProfileComplete?: true
+  availability?: true
+  preferredRole?: true
+  openToWork?: true
+  resumeUrl?: true
   companyName?: true
   designation?: true
 }
@@ -108,6 +138,13 @@ export type UserMaxAggregateInputType = {
   image?: true
   bio?: true
   resumeKey?: true
+  headline?: true
+  location?: true
+  isProfileComplete?: true
+  availability?: true
+  preferredRole?: true
+  openToWork?: true
+  resumeUrl?: true
   companyName?: true
   designation?: true
 }
@@ -126,6 +163,15 @@ export type UserCountAggregateInputType = {
   bio?: true
   resumeKey?: true
   skills?: true
+  headline?: true
+  location?: true
+  isProfileComplete?: true
+  experience?: true
+  availability?: true
+  preferredRole?: true
+  openToWork?: true
+  projects?: true
+  resumeUrl?: true
   companyName?: true
   designation?: true
   _all?: true
@@ -217,6 +263,15 @@ export type UserGroupByOutputType = {
   bio: string | null
   resumeKey: string | null
   skills: string[]
+  headline: string | null
+  location: string | null
+  isProfileComplete: boolean
+  experience: runtime.JsonValue | null
+  availability: string | null
+  preferredRole: string | null
+  openToWork: boolean
+  projects: runtime.JsonValue | null
+  resumeUrl: string | null
   companyName: string | null
   designation: string | null
   _count: UserCountAggregateOutputType | null
@@ -256,6 +311,15 @@ export type UserWhereInput = {
   bio?: Prisma.StringNullableFilter<"User"> | string | null
   resumeKey?: Prisma.StringNullableFilter<"User"> | string | null
   skills?: Prisma.StringNullableListFilter<"User">
+  headline?: Prisma.StringNullableFilter<"User"> | string | null
+  location?: Prisma.StringNullableFilter<"User"> | string | null
+  isProfileComplete?: Prisma.BoolFilter<"User"> | boolean
+  experience?: Prisma.JsonNullableFilter<"User">
+  availability?: Prisma.StringNullableFilter<"User"> | string | null
+  preferredRole?: Prisma.StringNullableFilter<"User"> | string | null
+  openToWork?: Prisma.BoolFilter<"User"> | boolean
+  projects?: Prisma.JsonNullableFilter<"User">
+  resumeUrl?: Prisma.StringNullableFilter<"User"> | string | null
   companyName?: Prisma.StringNullableFilter<"User"> | string | null
   designation?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
@@ -279,6 +343,15 @@ export type UserOrderByWithRelationInput = {
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   resumeKey?: Prisma.SortOrderInput | Prisma.SortOrder
   skills?: Prisma.SortOrder
+  headline?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  isProfileComplete?: Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
+  availability?: Prisma.SortOrderInput | Prisma.SortOrder
+  preferredRole?: Prisma.SortOrderInput | Prisma.SortOrder
+  openToWork?: Prisma.SortOrder
+  projects?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   companyName?: Prisma.SortOrderInput | Prisma.SortOrder
   designation?: Prisma.SortOrderInput | Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
@@ -305,6 +378,15 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   bio?: Prisma.StringNullableFilter<"User"> | string | null
   resumeKey?: Prisma.StringNullableFilter<"User"> | string | null
   skills?: Prisma.StringNullableListFilter<"User">
+  headline?: Prisma.StringNullableFilter<"User"> | string | null
+  location?: Prisma.StringNullableFilter<"User"> | string | null
+  isProfileComplete?: Prisma.BoolFilter<"User"> | boolean
+  experience?: Prisma.JsonNullableFilter<"User">
+  availability?: Prisma.StringNullableFilter<"User"> | string | null
+  preferredRole?: Prisma.StringNullableFilter<"User"> | string | null
+  openToWork?: Prisma.BoolFilter<"User"> | boolean
+  projects?: Prisma.JsonNullableFilter<"User">
+  resumeUrl?: Prisma.StringNullableFilter<"User"> | string | null
   companyName?: Prisma.StringNullableFilter<"User"> | string | null
   designation?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
@@ -328,6 +410,15 @@ export type UserOrderByWithAggregationInput = {
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   resumeKey?: Prisma.SortOrderInput | Prisma.SortOrder
   skills?: Prisma.SortOrder
+  headline?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  isProfileComplete?: Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
+  availability?: Prisma.SortOrderInput | Prisma.SortOrder
+  preferredRole?: Prisma.SortOrderInput | Prisma.SortOrder
+  openToWork?: Prisma.SortOrder
+  projects?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   companyName?: Prisma.SortOrderInput | Prisma.SortOrder
   designation?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -352,6 +443,15 @@ export type UserScalarWhereWithAggregatesInput = {
   bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   resumeKey?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   skills?: Prisma.StringNullableListFilter<"User">
+  headline?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  location?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  isProfileComplete?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  experience?: Prisma.JsonNullableWithAggregatesFilter<"User">
+  availability?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  preferredRole?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  openToWork?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  projects?: Prisma.JsonNullableWithAggregatesFilter<"User">
+  resumeUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   companyName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   designation?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
@@ -370,6 +470,15 @@ export type UserCreateInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -393,6 +502,15 @@ export type UserUncheckedCreateInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -416,6 +534,15 @@ export type UserUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -439,6 +566,15 @@ export type UserUncheckedUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -462,6 +598,15 @@ export type UserCreateManyInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
 }
@@ -480,6 +625,15 @@ export type UserUpdateManyMutationInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -498,6 +652,15 @@ export type UserUncheckedUpdateManyInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -524,6 +687,15 @@ export type UserCountOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   resumeKey?: Prisma.SortOrder
   skills?: Prisma.SortOrder
+  headline?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  isProfileComplete?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
+  availability?: Prisma.SortOrder
+  preferredRole?: Prisma.SortOrder
+  openToWork?: Prisma.SortOrder
+  projects?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   designation?: Prisma.SortOrder
 }
@@ -541,6 +713,13 @@ export type UserMaxOrderByAggregateInput = {
   image?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   resumeKey?: Prisma.SortOrder
+  headline?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  isProfileComplete?: Prisma.SortOrder
+  availability?: Prisma.SortOrder
+  preferredRole?: Prisma.SortOrder
+  openToWork?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   designation?: Prisma.SortOrder
 }
@@ -558,6 +737,13 @@ export type UserMinOrderByAggregateInput = {
   image?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   resumeKey?: Prisma.SortOrder
+  headline?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  isProfileComplete?: Prisma.SortOrder
+  availability?: Prisma.SortOrder
+  preferredRole?: Prisma.SortOrder
+  openToWork?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   designation?: Prisma.SortOrder
 }
@@ -680,6 +866,15 @@ export type UserCreateWithoutExperiencesInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -702,6 +897,15 @@ export type UserUncheckedCreateWithoutExperiencesInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -740,6 +944,15 @@ export type UserUpdateWithoutExperiencesInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -762,6 +975,15 @@ export type UserUncheckedUpdateWithoutExperiencesInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -784,6 +1006,15 @@ export type UserCreateWithoutPostingsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -806,6 +1037,15 @@ export type UserUncheckedCreateWithoutPostingsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -844,6 +1084,15 @@ export type UserUpdateWithoutPostingsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -866,6 +1115,15 @@ export type UserUncheckedUpdateWithoutPostingsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -888,6 +1146,15 @@ export type UserCreateWithoutInterviewsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -910,6 +1177,15 @@ export type UserUncheckedCreateWithoutInterviewsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -948,6 +1224,15 @@ export type UserUpdateWithoutInterviewsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -970,6 +1255,15 @@ export type UserUncheckedUpdateWithoutInterviewsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -992,6 +1286,15 @@ export type UserCreateWithoutSessionsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1014,6 +1317,15 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1052,6 +1364,15 @@ export type UserUpdateWithoutSessionsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1074,6 +1395,15 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1096,6 +1426,15 @@ export type UserCreateWithoutAccountsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1118,6 +1457,15 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   bio?: string | null
   resumeKey?: string | null
   skills?: Prisma.UserCreateskillsInput | string[]
+  headline?: string | null
+  location?: string | null
+  isProfileComplete?: boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: string | null
+  preferredRole?: string | null
+  openToWork?: boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
   companyName?: string | null
   designation?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1156,6 +1504,15 @@ export type UserUpdateWithoutAccountsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1178,6 +1535,15 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skills?: Prisma.UserUpdateskillsInput | string[]
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfileComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  experience?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  availability?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  preferredRole?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  projects?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1267,6 +1633,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   bio?: boolean
   resumeKey?: boolean
   skills?: boolean
+  headline?: boolean
+  location?: boolean
+  isProfileComplete?: boolean
+  experience?: boolean
+  availability?: boolean
+  preferredRole?: boolean
+  openToWork?: boolean
+  projects?: boolean
+  resumeUrl?: boolean
   companyName?: boolean
   designation?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -1291,6 +1666,15 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   bio?: boolean
   resumeKey?: boolean
   skills?: boolean
+  headline?: boolean
+  location?: boolean
+  isProfileComplete?: boolean
+  experience?: boolean
+  availability?: boolean
+  preferredRole?: boolean
+  openToWork?: boolean
+  projects?: boolean
+  resumeUrl?: boolean
   companyName?: boolean
   designation?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1309,6 +1693,15 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   bio?: boolean
   resumeKey?: boolean
   skills?: boolean
+  headline?: boolean
+  location?: boolean
+  isProfileComplete?: boolean
+  experience?: boolean
+  availability?: boolean
+  preferredRole?: boolean
+  openToWork?: boolean
+  projects?: boolean
+  resumeUrl?: boolean
   companyName?: boolean
   designation?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1327,11 +1720,20 @@ export type UserSelectScalar = {
   bio?: boolean
   resumeKey?: boolean
   skills?: boolean
+  headline?: boolean
+  location?: boolean
+  isProfileComplete?: boolean
+  experience?: boolean
+  availability?: boolean
+  preferredRole?: boolean
+  openToWork?: boolean
+  projects?: boolean
+  resumeUrl?: boolean
   companyName?: boolean
   designation?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "phoneNumber" | "role" | "createdAt" | "updatedAt" | "emailVerified" | "image" | "bio" | "resumeKey" | "skills" | "companyName" | "designation", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "phoneNumber" | "role" | "createdAt" | "updatedAt" | "emailVerified" | "image" | "bio" | "resumeKey" | "skills" | "headline" | "location" | "isProfileComplete" | "experience" | "availability" | "preferredRole" | "openToWork" | "projects" | "resumeUrl" | "companyName" | "designation", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -1366,6 +1768,15 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     bio: string | null
     resumeKey: string | null
     skills: string[]
+    headline: string | null
+    location: string | null
+    isProfileComplete: boolean
+    experience: runtime.JsonValue | null
+    availability: string | null
+    preferredRole: string | null
+    openToWork: boolean
+    projects: runtime.JsonValue | null
+    resumeUrl: string | null
     companyName: string | null
     designation: string | null
   }, ExtArgs["result"]["user"]>
@@ -1809,6 +2220,15 @@ export interface UserFieldRefs {
   readonly bio: Prisma.FieldRef<"User", 'String'>
   readonly resumeKey: Prisma.FieldRef<"User", 'String'>
   readonly skills: Prisma.FieldRef<"User", 'String[]'>
+  readonly headline: Prisma.FieldRef<"User", 'String'>
+  readonly location: Prisma.FieldRef<"User", 'String'>
+  readonly isProfileComplete: Prisma.FieldRef<"User", 'Boolean'>
+  readonly experience: Prisma.FieldRef<"User", 'Json'>
+  readonly availability: Prisma.FieldRef<"User", 'String'>
+  readonly preferredRole: Prisma.FieldRef<"User", 'String'>
+  readonly openToWork: Prisma.FieldRef<"User", 'Boolean'>
+  readonly projects: Prisma.FieldRef<"User", 'Json'>
+  readonly resumeUrl: Prisma.FieldRef<"User", 'String'>
   readonly companyName: Prisma.FieldRef<"User", 'String'>
   readonly designation: Prisma.FieldRef<"User", 'String'>
 }

@@ -49,9 +49,30 @@ export const POST = async (req: NextRequest) => {
       if (!newUser) {
         throw new ApiError("User cannot be found", 404);
       }
+
+      // ✅ CREATE BOILERPLATE PROFILE HERE
+      await prisma.user.update({
+        where: { id: newUser.id },
+        data: {
+          bio: "Tell us about yourself...",
+          headline: "Aspiring Candidate",
+          location: "Singapore",
+          skills: [],
+          projects: [
+            {
+              title: "Sample Project",
+              description: "Replace this with your own work",
+              tags: ["example"],
+            },
+          ],
+          isProfileComplete: false,
+        },
+      });
+
       const data = await auth.api.sendVerificationOTP({
         body: { email: newUser.email, type: "email-verification" },
       });
+
       if (!data.success) {
         throw new ApiError("Failed to send verification email", 500);
       }

@@ -101,7 +101,7 @@ export default function AppSidebar({ role }: { role: string | undefined }) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/profile">
+              <Link href="/dashboard/candidate/profile">
                 <User className="w-4 h-4" />
                 Profile
               </Link>

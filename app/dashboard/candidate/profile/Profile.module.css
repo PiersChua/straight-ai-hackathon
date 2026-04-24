@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap');
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+.body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F8FAFC;
+  color: #1A202C;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+/* ── Tag ──────────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background: #F1F5F9;
+  color: #475569;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+}
+.badgeGreen { background: #DCFCE7; color: #15803D; }
+.badgeGray  { background: #F1F5F9; color: #475569; }
+.badgeBlue  { background: #DBEAFE; color: #1D4ED8; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btnPrimary {
+  background: #0A2540;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btnPrimary:hover { background: #1E3A5F; }
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btnOutline {
+  background: transparent;
+  color: #0A2540;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btnOutline:hover { border-color: #0A2540; background: #F8FAFC; }
+
+.btnOutlineDashed {
+  composes: btnOutline;
+  border-style: dashed;
+  width: 100%;
+  padding: 12px;
+}
+
+.btnGhost {
+  background: transparent;
+  color: #64748B;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btnGhost:hover { border-color: #94A3B8; }
+
+.btnDanger {
+  composes: btnGhost;
+  color: #EF4444;
+  border-color: #FECACA;
+}
+
+/* ── Form controls ────────────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #1A202C;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus {
+  border-color: #1E6FD9;
+  box-shadow: 0 0 0 3px rgba(30, 111, 217, 0.1);
+}
+
+.inputSm {
+  composes: input;
+  width: 140px;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.textarea {
+  width: 100%;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #1A202C;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.15s;
+}
+.textarea:focus {
+  border-color: #1E6FD9;
+  box-shadow: 0 0 0 3px rgba(30, 111, 217, 0.1);
+}
+
+/* ── Label ────────────────────────────────────────────────────────────────── */
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748B;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── Divider ──────────────────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid #E2E8F0;
+  margin: 16px 0;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+.tabBtn {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: color 0.15s;
+  color: #64748B;
+  border-bottom: 2px solid transparent;
+  font-weight: 400;
+}
+.tabBtnActive {
+  composes: tabBtn;
+  color: #1E6FD9;
+  border-bottom-color: #1E6FD9;
+  font-weight: 500;
+}
+
+/* ── Skill bar ────────────────────────────────────────────────────────────── */
+.skillBarTrack {
+  height: 6px;
+  background: #E2E8F0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skillBarFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Project metric box ───────────────────────────────────────────────────── */
+.projectMetricBox {
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  gap: 20px;
+}
+
+/* ── Anon pill ────────────────────────────────────────────────────────────── */
+.anonPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #EFF6FF;
+  color: #1E6FD9;
+  border: 1px solid #BFDBFE;
+  border-radius: 99px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ── Fairness box ─────────────────────────────────────────────────────────── */
+.fairnessBox {
+  background: #F0FDF4;
+  border: 1px solid #A7F3D0;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+/* ── Loading shimmer ──────────────────────────────────────────────────────── */
+.loadingShimmer {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Score ring ───────────────────────────────────────────────────────────── */
+.scoreRing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.header {
+  background: #fff;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.headerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 32px 0;
+}
+
+.headerTopRow {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #0A2540;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.headerMeta {
+  flex: 1;
+}
+
+.headerNameRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.headerName {
+  font-size: 22px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+
+.headerHeadline {
+  font-size: 14px;
+  color: #64748B;
+  margin-bottom: 10px;
+}
+
+.headerHeadlinePlaceholder {
+  color: #CBD5E1;
+}
+
+.headerSkillTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.headerActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.headerActionBtns {
+  display: flex;
+  gap: 8px;
+}
+
+.credentialShield {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: right;
+}
+
+.credentialShieldLabel {
+  font-size: 11px;
+  color: #94A3B8;
+  margin-bottom: 3px;
+}
+
+.credentialShieldValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.credentialShieldNote {
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+/* ── Stats row ────────────────────────────────────────────────────────────── */
+.statsRow {
+  display: flex;
+  gap: 32px;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 16px;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statValue {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0A2540;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+/* ── Tabs row ─────────────────────────────────────────────────────────────── */
+.tabsRow {
+  display: flex;
+  gap: 0;
+  margin-top: 16px;
+}
+
+/* ── Page body layout ─────────────────────────────────────────────────────── */
+.pageBody {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+/* ── Loading layout ───────────────────────────────────────────────────────── */
+.loadingLayout {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+.loadingCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Tab content ──────────────────────────────────────────────────────────── */
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tabContentSm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Empty states ─────────────────────────────────────────────────────────── */
+.emptyState {
+  text-align: center;
+  padding: 40px 24px;
+  color: #94A3B8;
+}
+
+.emptyStateIcon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.emptyStateText {
+  font-size: 14px;
+}
+
+/* ── Project card ─────────────────────────────────────────────────────────── */
+.projectCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.projectTitle {
+  font-size: 17px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+}
+
+.projectDescription {
+  font-size: 14px;
+  color: #4A5568;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.projectTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Skills card ──────────────────────────────────────────────────────────── */
+.skillsTitle {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skillBarHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.skillBarName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skillBarLevel {
+  font-size: 13px;
+  color: #64748B;
+}
+
+/* ── Experience card ──────────────────────────────────────────────────────── */
+.expCardInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.expRole {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.expCompany {
+  font-size: 14px;
+  color: #1E6FD9;
+  margin-bottom: 2px;
+}
+
+.expPeriod {
+  font-size: 12px;
+  color: #94A3B8;
+  margin-bottom: 10px;
+}
+
+.expDesc {
+  font-size: 13px;
+  color: #4A5568;
+  line-height: 1.6;
+}
+
+.expEditStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Assessment card ──────────────────────────────────────────────────────── */
+.assessmentCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.assessmentMeta {
+  flex: 1;
+}
+
+.assessmentRole {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.assessmentSub {
+  font-size: 13px;
+  color: #64748B;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Score card ───────────────────────────────────────────────────────────── */
+.scoreCard {
+  text-align: center;
+  padding: 24px;
+}
+
+.scoreCardLabel {
+  font-size: 13px;
+  color: #64748B;
+  margin-bottom: 12px;
+}
+
+.scoreCardNote {
+  font-size: 13px;
+  color: #64748B;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── About card ───────────────────────────────────────────────────────────── */
+.aboutTitle {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.aboutBio {
+  font-size: 13px;
+  color: #4A5568;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.aboutBioPlaceholder {
+  color: #CBD5E1;
+}
+
+.aboutMetaRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.aboutMetaKey {
+  color: #94A3B8;
+}
+
+.aboutMetaValue {
+  font-weight: 500;
+}
+
+.aboutMetaPlaceholder {
+  color: #CBD5E1;
+}
+
+/* ── Resume card ──────────────────────────────────────────────────────────── */
+.resumeTitle {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.resumeUploaded {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resumeLink {
+  font-size: 13px;
+  color: #1E6FD9;
+  text-decoration: none;
+}
+
+.resumeDropzone {
+  border: 1px dashed #CBD5E1;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #94A3B8;
+  cursor: pointer;
+  display: block;
+}
+
+.resumeDropzoneIcon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.resumeEmpty {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+/* ── Fairness note ────────────────────────────────────────────────────────── */
+.fairnessTitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #065F46;
+  margin-bottom: 6px;
+}
+
+.fairnessText {
+  font-size: 12px;
+  color: #064E3B;
+  line-height: 1.6;
+}
+
+/* ── Metric item ──────────────────────────────────────────────────────────── */
+.metricValue {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0A2540;
+}
+
+.metricLabel {
+  font-size: 11px;
+  color: #64748B;
+}

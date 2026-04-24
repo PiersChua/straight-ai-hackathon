@@ -49,6 +49,19 @@ model User {
   resumeKey   String? // s3 key
   skills      String[]
   experiences Experience[]
+  headline     String?
+  location     String?
+  isProfileComplete Boolean @default(false)
+  experience Json?   // add this
+  availability  String?
+  preferredRole String?
+  openToWork    Boolean @default(false)
+
+  // simple portfolio (JSON for flexibility)
+  projects Json?
+
+  // optional: store resume locally instead of S3
+  resumeUrl String?
 
   // Hirer-only fields
   companyName String?

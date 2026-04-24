@@ -9,12 +9,18 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  // emailAndPassword: {
+  //   enabled: true,
+  //   autoSignIn: false,
+  //   requireEmailVerification: false,
+  // minPasswordLength:
+  // },
   emailAndPassword: {
     enabled: true,
-    autoSignIn: false,
-    requireEmailVerification: true,
-    // minPasswordLength:
+    autoSignIn: true,
+    requireEmailVerification: false,
   },
+  // ❌ remove emailVerification block entirely
   emailVerification: {
     autoSignInAfterVerification: true,
     sendOnSignUp: true,
