@@ -32,13 +32,18 @@ export async function POST(req: NextRequest) {
       signedUrl: signed_url,
     });
   } catch (error) {
-    if (error instanceof ApiError)
+    if (error instanceof ApiError) {
       return NextResponse.json(
         { message: error.message },
         { status: error.status },
       );
-    if (error instanceof Error)
+    }
+    if (error instanceof Error) {
       return NextResponse.json({ message: error.message }, { status: 500 });
-    return NextResponse.json({ message: "Unknown error" }, { status: 500 });
+    }
+    return NextResponse.json(
+      { message: "Unknown error occurred" },
+      { status: 500 },
+    );
   }
 }

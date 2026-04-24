@@ -1,12 +1,23 @@
-import { ApiError } from "@/utils/errors";
 import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { ApiError } from "@/utils/errors";
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const res = await auth.api.signOut({
-      headers: await headers(),
+    const { email, otp } = await req.json();
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      throw new ApiError("Something went wrong", 404);
+    }
+    if (user.emailVerified) {
+      throw new ApiError("Email has already been verified", 400);
+    }
+    const res = await auth.api.verifyEmailOTP({
+      body: {
+        email: email, // required
+        otp: otp, // required
+      },
       asResponse: true,
     });
     return res;

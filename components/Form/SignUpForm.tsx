@@ -17,6 +17,11 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { SignupSchema } from "@/schemas";
 import { useRouter } from "next/navigation";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +36,7 @@ const SignUpForm = () => {
       name: "",
       email: "",
       password: "",
+      phoneNumber: "",
       role: undefined,
       confirmPassword: "",
     },
@@ -109,7 +115,31 @@ const SignUpForm = () => {
             </Field>
           )}
         />
-
+        <Controller
+          name="phoneNumber"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="grid gap-1">
+              <FieldLabel className="text-xs font-medium text-slate-600">
+                Phone Number
+              </FieldLabel>
+              <InputGroup>
+                <InputGroupInput
+                  {...field}
+                  placeholder="98765432"
+                  maxLength={8}
+                  aria-invalid={fieldState.invalid ? "true" : "false"}
+                />
+                <InputGroupAddon>+65</InputGroupAddon>{" "}
+              </InputGroup>
+              {fieldState.invalid && (
+                <span className="text-[11px] text-red-500">
+                  {fieldState.error?.message}
+                </span>
+              )}
+            </Field>
+          )}
+        />
         {/* Role Select */}
         <Controller
           name="role"

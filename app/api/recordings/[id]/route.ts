@@ -1,4 +1,6 @@
+import { auth } from "@/lib/auth";
 import { ApiError } from "@/utils/errors";
+import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -6,6 +8,10 @@ export async function GET(
   { params }: RouteContext<"/api/recordings/[id]">,
 ) {
   try {
+    const session = await auth.api.getSession({ headers: await headers() });
+    if (!session) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await params;
     const res = await fetch(
       `https://api.elevenlabs.io/v1/convai/conversations/${id}/audio`,

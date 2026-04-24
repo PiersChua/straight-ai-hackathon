@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 
 const candidateRoutes = ["/dashboard/candidate"];
 const hirerRoutes = ["/dashboard/hirer"];
-const authRoutes = ["/login", "/sign-up"];
+const authRoutes = ["/login", "/sign-up", "/verify-email", "/forgot-password"];
 export const proxy = async (req: NextRequest) => {
   const session = await auth.api.getSession({
     headers: await headers(),

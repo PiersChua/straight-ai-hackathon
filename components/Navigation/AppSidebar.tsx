@@ -10,16 +10,12 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Role } from "@/generated/prisma/enums";
 
 import {
   LayoutDashboard,
   User,
   Mic,
   BarChart3,
-  Users,
-  PlusCircle,
-  Sparkles,
   LogOut,
 } from "lucide-react";
 
@@ -38,9 +34,8 @@ export default function AppSidebar({ role }: { role: string | undefined }) {
     <Sidebar className="bg-white border-r border-slate-200">
       {/* Header */}
       <SidebarHeader>
-        <div className="px-3 py-2">
-          <p className="text-sm font-semibold text-slate-900">Aptly</p>
-          <p className="text-xs text-slate-500">Merit-based talent platform</p>
+        <div className="text-xl font-bold tracking-tight text-slate-900 px-4">
+          Aptly.
         </div>
       </SidebarHeader>
 

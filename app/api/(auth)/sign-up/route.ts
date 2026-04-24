@@ -7,10 +7,12 @@ import { role } from "better-auth/client";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { name, email, password, confirmPassword, role } = await req.json();
+    const { name, email, phoneNumber, password, confirmPassword, role } =
+      await req.json();
     const validatedFields = SignupSchema.safeParse({
       name,
       email,
+      phoneNumber,
       password,
       confirmPassword,
       role,
@@ -33,6 +35,7 @@ export const POST = async (req: NextRequest) => {
       body: {
         email: validatedData.email, // user email address
         password: validatedData.password, // user password -> min 8 characters by default
+        phoneNumber: validatedData.phoneNumber,
         name: validatedData.name, // user display name
         role: validatedData.role,
       },

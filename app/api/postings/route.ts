@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { PostingSchema } from "@/schemas";
 import { z } from "zod";
+import { ApiError } from "@/utils/errors";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +12,6 @@ export async function POST(req: NextRequest) {
     if (!session) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-
     const body = await req.json();
     const parsed = PostingSchema.safeParse(body);
 
@@ -42,10 +42,18 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(posting, { status: 201 });
-  } catch (err) {
-    console.error("[POST /api/posting]", err);
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json(
+        { message: error.message },
+        { status: error.status },
+      );
+    }
+    if (error instanceof Error) {
+      return NextResponse.json({ message: error.message }, { status: 500 });
+    }
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Unknown error occurred" },
       { status: 500 },
     );
   }

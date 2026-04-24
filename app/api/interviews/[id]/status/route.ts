@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { InterviewStatus } from "@/generated/prisma/enums";
+import { ApiError } from "@/utils/errors";
 
 const StatusSchema = z.object({
   status: z.enum(InterviewStatus),
@@ -37,20 +38,27 @@ export async function PUT(
         { status: 404 },
       );
     }
-
     if (interview.posting.userId !== session.user.id) {
       return NextResponse.json({ message: "Forbidden" }, { status: 403 });
     }
-
     const updated = await prisma.interview.update({
       where: { id },
       data: { status: parsed.data.status },
     });
 
     return NextResponse.json(updated);
-  } catch (err) {
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json(
+        { message: error.message },
+        { status: error.status },
+      );
+    }
+    if (error instanceof Error) {
+      return NextResponse.json({ message: error.message }, { status: 500 });
+    }
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Unknown error occurred" },
       { status: 500 },
     );
   }

@@ -115,3 +115,15 @@ After setup, copy the following values into your `.env`:
 
 - `ELEVENLABS_API_KEY` — found under **Profile → API Keys**
 - `ELEVENLABS_AGENT_ID` — found on the agent's settings page
+
+---
+
+## Resend Setup
+
+Aptly uses Resend to deliver transactional emails — including OTP verification codes and password reset emails.
+
+### Getting Your API Key
+
+1. Go to [resend.com](https://resend.com) and create an account
+2. Navigate to **API Keys** and create a new key
+3. Copy it into your `.env` as `RESEND_API_KEY`

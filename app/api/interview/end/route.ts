@@ -12,11 +12,16 @@ export async function POST(req: NextRequest) {
       throw new ApiError("Unauthorized", 401);
     }
     const { fullTranscription, interviewId, conversationId } = await req.json();
-    await prisma.interview.update({
+    const interview = await prisma.interview.update({
       where: { id: interviewId },
       data: {
         fullTranscription,
         conversationId,
+      },
+    });
+    const posting = await prisma.posting.findUnique({
+      where: {
+        id: interview.postingId,
       },
     });
 
@@ -40,6 +45,28 @@ You will evaluate performance strictly based on:
 4. Practical problem-solving ability
 5. Communication clarity and precision
 6. Consistency of answers across the interview
+
+---
+
+### ROLE CONTEXT
+
+You are evaluating a candidate for the following position. Use this as the benchmark for scoring.
+
+**Job Title:** ${posting?.title ?? "N/A"}
+
+**Job Description:**
+${posting?.description ?? "N/A"}
+
+**Requirements:**
+${posting?.requirements ?? "N/A"}
+
+**Interview Questions Asked:**
+${posting?.questions?.map((q, i) => `${i + 1}. ${q}`).join("\n") ?? "N/A"}
+
+When scoring, consider:
+- How well the candidate's answers align with the role's requirements
+- Whether their demonstrated skills match what the job demands
+- How directly and completely they addressed each of the questions above
 
 ---
 
