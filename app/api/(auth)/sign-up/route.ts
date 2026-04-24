@@ -4,6 +4,7 @@ import { SignupSchema } from "@/schemas";
 import z from "zod";
 import { auth } from "@/lib/auth";
 import { role } from "better-auth/client";
+import { prisma } from "@/lib/prisma";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -41,6 +42,20 @@ export const POST = async (req: NextRequest) => {
       },
       asResponse: true,
     });
+    if (res.ok) {
+      const newUser = await prisma.user.findUnique({
+        where: { email: validatedData.email },
+      });
+      if (!newUser) {
+        throw new ApiError("User cannot be found", 404);
+      }
+      const data = await auth.api.sendVerificationOTP({
+        body: { email: newUser.email, type: "email-verification" },
+      });
+      if (!data.success) {
+        throw new ApiError("Failed to send verification email", 500);
+      }
+    }
     return res;
   } catch (error) {
     if (error instanceof ApiError) {

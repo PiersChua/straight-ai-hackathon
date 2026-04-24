@@ -54,7 +54,8 @@ const SignUpForm = () => {
         const { message } = await res.json();
         setError(message ?? "Failed to sign up");
       } else {
-        router.push("/");
+        const { user } = await res.json();
+        router.push(`/verify-email?email=${encodeURIComponent(user.email)}`);
       }
     });
   };
